@@ -1,0 +1,5 @@
+F:\1Private\GoCollege\Web\GoCollegeWebApp\GoCollege_BL\bin\Debug\GoCollege_BL.dll
+F:\1Private\GoCollege\Web\GoCollegeWebApp\GoCollege_BL\bin\Debug\GoCollege_BL.pdb
+F:\1Private\GoCollege\Web\GoCollegeWebApp\GoCollege_BL\obj\Debug\GoCollege_BL.csprojResolveAssemblyReference.cache
+F:\1Private\GoCollege\Web\GoCollegeWebApp\GoCollege_BL\obj\Debug\GoCollege_BL.dll
+F:\1Private\GoCollege\Web\GoCollegeWebApp\GoCollege_BL\obj\Debug\GoCollege_BL.pdb

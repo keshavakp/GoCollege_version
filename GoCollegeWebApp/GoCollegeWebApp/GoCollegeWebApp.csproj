@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{122ED3C5-FF5C-4BAD-B3C9-D05359100B4C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GoCollegeWebApp</RootNamespace>
+    <AssemblyName>GoCollegeWebApp</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.Composition.Registration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AdminEditDetails.aspx" />
+    <Content Include="AdminHome.aspx" />
+    <Content Include="AdminLogin.aspx" />
+    <Content Include="AdminUpdateCollege.aspx" />
+    <Content Include="CollegeEditDetails.aspx" />
+    <Content Include="EditCollege.aspx" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\Montserrat-Regular.ttf" />
+    <Content Include="fonts\Muli-Regular.ttf" />
+    <Content Include="AdminMaster.Master" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\calendar.css" />
+    <Content Include="css\clndr.css" />
+    <Content Include="css\custom.css" />
+    <Content Include="css\custom_1.css" />
+    <Content Include="css\examples.css" />
+    <Content Include="css\font-awesome.css" />
+    <Content Include="css\graph.css" />
+    <Content Include="css\main.css" />
+    <Content Include="css\owl.carousel.css" />
+    <Content Include="css\style.css" />
+    <Content Include="css\swipebox.css" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="images\404.png" />
+    <Content Include="images\arr.png" />
+    <Content Include="images\dark.png" />
+    <Content Include="images\ga.jpg" />
+    <Content Include="images\ga1.jpg" />
+    <Content Include="images\ga2.jpg" />
+    <Content Include="images\ga3.jpg" />
+    <Content Include="images\ga4.jpg" />
+    <Content Include="images\ga5.jpg" />
+    <Content Include="images\ga6.jpg" />
+    <Content Include="images\ga7.jpg" />
+    <Content Include="images\ga8.jpg" />
+    <Content Include="images\icons.svg" />
+    <Content Include="images\in.jpg" />
+    <Content Include="images\in1.jpg" />
+    <Content Include="images\in10.jpg" />
+    <Content Include="images\in11.jpg" />
+    <Content Include="images\in2.jpg" />
+    <Content Include="images\in3.jpg" />
+    <Content Include="images\in4.jpg" />
+    <Content Include="images\in5.jpg" />
+    <Content Include="images\in6.jpg" />
+    <Content Include="images\in7.jpg" />
+    <Content Include="images\in8.jpg" />
+    <Content Include="images\in9.jpg" />
+    <Content Include="images\link.png" />
+    <Content Include="images\lo.png" />
+    <Content Include="images\na.jpg" />
+    <Content Include="images\na1.jpg" />
+    <Content Include="images\na2.jpg" />
+    <Content Include="images\pic3.jpg" />
+    <Content Include="images\pr.jpg" />
+    <Content Include="images\search.png" />
+    <Content Include="images\tick1.png" />
+    <Content Include="images\wo.jpg" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\Chart.js" />
+    <Content Include="js\clndr.js" />
+    <Content Include="js\custom.js" />
+    <Content Include="js\data.js" />
+    <Content Include="js\gmaps.js" />
+    <Content Include="js\jquery.calendario.js" />
+    <Content Include="js\jquery.flot.js" />
+    <Content Include="js\jquery.flot.pie.js" />
+    <Content Include="js\jquery.flot.selection.js" />
+    <Content Include="js\jquery.flot.stack.js" />
+    <Content Include="js\jquery.metisMenu.js" />
+    <Content Include="js\jquery.min.js" />
+    <Content Include="js\jquery.nicescroll.js" />
+    <Content Include="js\jquery.slimscroll.min.js" />
+    <Content Include="js\jquery.swipebox.min.js" />
+    <Content Include="js\moment-2.2.1.js" />
+    <Content Include="js\owl.carousel.js" />
+    <Content Include="js\pie-chart.js" />
+    <Content Include="js\screenfull.js" />
+    <Content Include="js\scripts.js" />
+    <Content Include="js\site.js" />
+    <Content Include="js\skycons.js" />
+    <Content Include="js\underscore-min.js" />
+    <Content Include="validation.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminEditDetails.aspx.cs">
+      <DependentUpon>AdminEditDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminEditDetails.aspx.designer.cs">
+      <DependentUpon>AdminEditDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminHome.aspx.cs">
+      <DependentUpon>AdminHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminHome.aspx.designer.cs">
+      <DependentUpon>AdminHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminLogin.aspx.cs">
+      <DependentUpon>AdminLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminLogin.aspx.designer.cs">
+      <DependentUpon>AdminLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminMaster.Master.cs">
+      <DependentUpon>AdminMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminMaster.Master.designer.cs">
+      <DependentUpon>AdminMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="AdminUpdateCollege.aspx.cs">
+      <DependentUpon>AdminUpdateCollege.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminUpdateCollege.aspx.designer.cs">
+      <DependentUpon>AdminUpdateCollege.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CollegeEditDetails.aspx.cs">
+      <DependentUpon>CollegeEditDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CollegeEditDetails.aspx.designer.cs">
+      <DependentUpon>CollegeEditDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditCollege.aspx.cs">
+      <DependentUpon>EditCollege.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditCollege.aspx.designer.cs">
+      <DependentUpon>EditCollege.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GoCollege_BL\GoCollege_BusinessLayer.csproj">
+      <Project>{4121e9ba-087d-4a67-9f95-b9bf7c549d47}</Project>
+      <Name>GoCollege_BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GoCollege_CL\GoCollege_ConnectionLayer.csproj">
+      <Project>{300c4964-9a08-4beb-92b8-d06326f746e0}</Project>
+      <Name>GoCollege_ConnectionLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GoCollege_DL\GoCollege_DataLayer.csproj">
+      <Project>{b450fdeb-40f2-4d9f-a2cd-a67ec5e310c0}</Project>
+      <Name>GoCollege_DataLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>11574</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:11574/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
