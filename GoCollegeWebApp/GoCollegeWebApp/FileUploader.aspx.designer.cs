@@ -11,7 +11,7 @@ namespace GoCollegeWebApp
 {
 
 
-    public partial class CollegeEditDetails
+    public partial class FileUploader
     {
 
         /// <summary>

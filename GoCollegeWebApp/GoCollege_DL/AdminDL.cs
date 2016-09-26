@@ -49,7 +49,7 @@ namespace GoCollege_DL
             return MyDataSet.Tables[0].DefaultView;        
         }
 
-        //Check for Existing Email and Mobile Number
+        //Check for Existing Email and Mobile Number from Admin Table
 
         public DataView ChkForExisting(SqlConnection con, SqlTransaction trans)
         {
@@ -138,11 +138,6 @@ namespace GoCollege_DL
                 int retValue = 0;
 
                 retValue = cmd.ExecuteNonQuery();
-
-
-                //MyDataAdapter = new SqlDataAdapter(cmd);
-                //MyDataAdapter.Fill(MyDataSet);
-
                 return retValue;
             }
 
@@ -150,11 +145,7 @@ namespace GoCollege_DL
             {
 
             }
-
             return 0;  
-
-           // return MyDataSet.Tables[0].DefaultView;  
- 
 
         }
        
@@ -196,5 +187,109 @@ namespace GoCollege_DL
         }
 
 
+        //Check for Existing Email.Mobile Number and Phone Number from Clg Table
+        public DataView FetchForExistingClgDetails(SqlConnection con,SqlTransaction trans)
+        {
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            try
+            {
+                qry = "Select * from tblCollege";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;               
+           
+                MyDataAdapter = new SqlDataAdapter(cmd);
+                MyDataAdapter.Fill(MyDataSet);
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+
+            return MyDataSet.Tables[0].DefaultView;   
+            
+        }
+
+        //Update College Details for First Time
+        public int UpdateCollegeDetails(SqlConnection con,SqlTransaction trans,string clgCode, string clgName, string clgEmail, Int64 clgPhone, Int64 clgMobile, string clgAddress)
+        {
+
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            try
+            {
+
+                qry = " Update tblCollege set CollegeName=@CollegeName,CollegeEmail=@CollegeEmail,CollegePhone=@CollegePhone,CollegeMobile=@CollegeMobile,CollegeAddress=@CollegeAddress,CollegeStatus=@CollegeStatus where CollegeCode=@CollegeCode";
+                
+               //" CollegeName=@adminName,AdminEmail=@adminEmail,AdminMobile=@adminMobile,AdminPassword=@Password,AdminStatus=@adminStatus where AdminUserName=@UserName and AdminStatus='R'";
+
+
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+                SqlParameter param;
+
+                // parameter for College Code
+                param = new SqlParameter("@CollegeCode", SqlDbType.VarChar, 20);
+                param.Direction = ParameterDirection.Input;
+                param.Value = clgCode;
+                cmd.Parameters.Add(param);
+
+                // parameter for College Name column
+                param = new SqlParameter("@CollegeName", SqlDbType.VarChar, 250);
+                param.Direction = ParameterDirection.Input;
+                param.Value = clgName;
+                cmd.Parameters.Add(param);
+
+                // parameter for Admin Name column
+                param = new SqlParameter("@CollgeEmail", SqlDbType.VarChar, 250);
+                param.Direction = ParameterDirection.Input;
+                param.Value = clgEmail;
+                cmd.Parameters.Add(param);
+
+                // parameter for Admin Email column
+                param = new SqlParameter("@CollegePhone", SqlDbType.BigInt, 10);
+                param.Direction = ParameterDirection.Input;
+                param.Value = clgPhone;
+                cmd.Parameters.Add(param);
+
+
+                // parameter for Admin Mobile column
+                param = new SqlParameter("@CollegeMobile", SqlDbType.BigInt, 10);
+                param.Direction = ParameterDirection.Input;
+                param.Value = clgMobile;
+                cmd.Parameters.Add(param);
+
+
+                // parameter for Admin Status column
+                param = new SqlParameter("@CollegeStatus", SqlDbType.Char, 1);
+                param.Direction = ParameterDirection.Input;
+                param.Value = 'A';
+                cmd.Parameters.Add(param);
+
+                int retValue = 0;
+
+                retValue = cmd.ExecuteNonQuery();
+                return retValue;
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+            return 0;  
+ 
+        }
+        
+        //Add Faculty
+        public DataView CheckForExistingEIDs
+        { 
+
+        }
+        
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CollegeEditDetails.aspx.cs" Inherits="GoCollegeWebApp.CollegeEditDetails" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FileUploader.aspx.cs" Inherits="GoCollegeWebApp.FileUploader" %>
 
 <!DOCTYPE html>
 
@@ -9,6 +9,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
+
     
     </div>
     </form>

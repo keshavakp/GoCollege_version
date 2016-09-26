@@ -90,7 +90,6 @@ namespace GoCollegeWebApp
         {
             string s = "<script language=javascript>  document.getElementById('" + adminUserName.ClientID + "').focus(); </script>";
             ClientScript.RegisterStartupScript(GetType(), "Focus", s);
-
             adminUserName.Text = "";
             adminPassword.Text = "";
         }

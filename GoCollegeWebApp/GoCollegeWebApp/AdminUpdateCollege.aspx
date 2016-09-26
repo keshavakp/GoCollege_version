@@ -66,10 +66,10 @@
             <div class="validation-system">
 
                 <div class="col-lg-2"></div>
+                 
+                <div class="col-lg-8  " >
 
-                <div class="col-lg-8">
-
-                    <div class="validation-form">
+                    <div class="validation-form ">
                         <!---->
 
                         <form id="adminEditDetails" runat="server">
@@ -79,7 +79,7 @@
 
                             <h3 class="text-center">Update Your College Details </h3>
 
-                            <div class="vali-form">
+                            <div class="vali-form setborder">
 
                                 <div class="clearfix"></div>
 
@@ -118,7 +118,7 @@
                                 <div class="clearfix"></div>
                                 <div class="col-md-12 form-group1 ">
                                     <label class="control-label">Mobile Number</label>
-                                    <asp:TextBox ID="txtCollgeMobile" runat="server" placeholder="Mobile Number" required="" MaxLength="10"></asp:TextBox>
+                                    <asp:TextBox ID="txtCollegeMobile" runat="server" placeholder="Mobile Number" required="" MaxLength="10"></asp:TextBox>
                                     <asp:RegularExpressionValidator ID="regexpMobile" runat="server" ErrorMessage="Enter Valid Mobile Number" ControlToValidate="txtCollgeMobile" ValidationExpression="[0-9]{10}" Font-Size="Smaller" ForeColor="#FF3300"></asp:RegularExpressionValidator>
 
                                 </div>

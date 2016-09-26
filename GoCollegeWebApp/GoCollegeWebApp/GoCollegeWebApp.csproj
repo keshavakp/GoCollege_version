@@ -65,7 +65,6 @@
     <Content Include="AdminHome.aspx" />
     <Content Include="AdminLogin.aspx" />
     <Content Include="AdminUpdateCollege.aspx" />
-    <Content Include="CollegeEditDetails.aspx" />
     <Content Include="EditCollege.aspx" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
@@ -195,13 +194,6 @@
     </Compile>
     <Compile Include="AdminUpdateCollege.aspx.designer.cs">
       <DependentUpon>AdminUpdateCollege.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CollegeEditDetails.aspx.cs">
-      <DependentUpon>CollegeEditDetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CollegeEditDetails.aspx.designer.cs">
-      <DependentUpon>CollegeEditDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="EditCollege.aspx.cs">
       <DependentUpon>EditCollege.aspx</DependentUpon>

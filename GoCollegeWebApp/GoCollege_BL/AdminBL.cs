@@ -95,6 +95,42 @@ namespace GoCollege_BL
 
         }
 
+        //Check for Existing Email ID.Mobile and Phone Number //College Details
+        public DataView ChkForExistingCollegeDetails()
+        {
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+            try
+            {
+                conn.BeginTransaction();
+
+                dvMsg = objAdmiDL.ChkForExisting(conn.con, conn.trans);
+
+                if (dvMsg.Count.Equals(0))
+                {
+                    conn.CommitTransaction();
+
+                    return dvMsg.Table.DefaultView;
+
+                }
+
+                conn.CommitTransaction();
+
+                return dvMsg.Table.DefaultView;
+
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dvMsg.Table.DefaultView;
+
+        }
+
 
 
         //Update Admin Details
@@ -178,8 +214,43 @@ namespace GoCollege_BL
 
 
         //Update College Details
-        public int UpdateCollegeDetails()
+        public int UpdateCollegeDetails(string clgCode,string clgName,string clgEmail,Int64 clgPhone,Int64 clgMobile,string clgAddress)
         {
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+            try
+            {
+                conn.BeginTransaction();
+                             
+
+                int qryResult = 0;
+
+                qryResult = objAdmiDL.UpdateCollegeDetails(conn.con, conn.trans, clgCode, clgName, clgEmail, clgPhone, clgMobile, clgAddress);
+
+                //dvMsg = objAdmiDL.FetchAdminDetails(conn.con, conn.trans, adminUN, adminPWD);
+
+                if (qryResult == 0)
+                {
+                    return qryResult;
+
+                }
+
+                conn.CommitTransaction();
+
+                return 1;
+
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            //  return dvMsg.Table.DefaultView;
+            return 0;
+
             return 0;
         }
 

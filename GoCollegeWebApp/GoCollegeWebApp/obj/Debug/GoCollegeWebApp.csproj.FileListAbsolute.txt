@@ -9,3 +9,14 @@ F:\1Private\GoCollege\Web\GoCollegeWebApp\GoCollegeWebApp\bin\GoCollege_DL.dll
 F:\1Private\GoCollege\Web\GoCollegeWebApp\GoCollegeWebApp\bin\GoCollege_BL.pdb
 F:\1Private\GoCollege\Web\GoCollegeWebApp\GoCollegeWebApp\bin\GoCollege_CL.pdb
 F:\1Private\GoCollege\Web\GoCollegeWebApp\GoCollegeWebApp\bin\GoCollege_DL.pdb
+E:\KESHU\Personal\MyCampuz\WebApp\GoCollegeWebApp\GoCollegeWebApp\bin\GoCollegeWebApp.dll
+E:\KESHU\Personal\MyCampuz\WebApp\GoCollegeWebApp\GoCollegeWebApp\bin\GoCollegeWebApp.pdb
+E:\KESHU\Personal\MyCampuz\WebApp\GoCollegeWebApp\GoCollegeWebApp\bin\GoCollege_BL.dll
+E:\KESHU\Personal\MyCampuz\WebApp\GoCollegeWebApp\GoCollegeWebApp\bin\GoCollege_CL.dll
+E:\KESHU\Personal\MyCampuz\WebApp\GoCollegeWebApp\GoCollegeWebApp\bin\GoCollege_DL.dll
+E:\KESHU\Personal\MyCampuz\WebApp\GoCollegeWebApp\GoCollegeWebApp\bin\GoCollege_BL.pdb
+E:\KESHU\Personal\MyCampuz\WebApp\GoCollegeWebApp\GoCollegeWebApp\bin\GoCollege_CL.pdb
+E:\KESHU\Personal\MyCampuz\WebApp\GoCollegeWebApp\GoCollegeWebApp\bin\GoCollege_DL.pdb
+E:\KESHU\Personal\MyCampuz\WebApp\GoCollegeWebApp\GoCollegeWebApp\obj\Debug\GoCollegeWebApp.csprojResolveAssemblyReference.cache
+E:\KESHU\Personal\MyCampuz\WebApp\GoCollegeWebApp\GoCollegeWebApp\obj\Debug\GoCollegeWebApp.dll
+E:\KESHU\Personal\MyCampuz\WebApp\GoCollegeWebApp\GoCollegeWebApp\obj\Debug\GoCollegeWebApp.pdb

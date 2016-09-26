@@ -48,30 +48,25 @@ namespace GoCollegeWebApp
 
 
 
-                string adminUserName = Session["AdminUserName"].ToString();
-
-                
-
+                string adminUserName = Session["AdminUserName"].ToString();      
                 string adminUN = Session["AdminUserName"].ToString();
                 string adminNAME = adminName.Text.ToString(); 
                 string adminPWD = adminPassword.Text.ToString();
                 string adminEMAIL = adminEmail.Text.ToString();
                 Int64 adminMOBILE = Convert.ToInt64(adminMobile.Text.ToString());
 
-
                 DataView dv = new DataView();
                 dv = objadminBL.ChkForExisting();
-
-
 
                 int chkmail=0, chkmobile=0;
 
                 for (int i = 0; i < dv.Count; i++)
                 {
+
                     if (adminEMAIL == dv[i]["AdminEmail"].ToString() && adminMOBILE == Convert.ToInt64(dv[i]["AdminMobile"].ToString()))
                     {
                         chkmail = 1;
-                         chkmobile = 1;
+                        chkmobile = 1;
                         //errMsg.Text = "Email ID and Mobile Number already exists";
                     }
                     else if ( adminEMAIL == dv[i]["AdminEmail"].ToString())
@@ -79,9 +74,13 @@ namespace GoCollegeWebApp
                         chkmail = 1;
                         //errMsg.Text = "Mobile Number already exists";
                     }
-                    else if (adminMOBILE == Convert.ToInt64(dv[i]["AdminMobile"].ToString()))
+                    else if (dv[i]["AdminMobile"].ToString() != "")
                     {
-                        chkmobile = 1;
+
+                        if (adminMOBILE == Convert.ToInt64(dv[i]["AdminMobile"].ToString()) )
+                        {
+                            chkmobile = 1;
+                        }
                     }
                 }
 
