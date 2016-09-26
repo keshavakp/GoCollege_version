@@ -11,14 +11,24 @@ namespace GoCollegeWebApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["AdminUserName"].Equals(null) || Session["AdminLogin"].Equals(null) || Session["UserType"].Equals(null))
-
+            if (!Page.IsPostBack)
             {
-                Response.Redirect("~/AdminLogin.aspx");
-                
-            
-            }
-                       
+                try
+                {
+                    if (Session["AdminUserName"] == null || Session["AdminLogin"] == null || Session["UserType"] == null)
+                    {
+                        Response.Redirect("~/AdminLogin.aspx");
+                    }
+                    else
+                    {
+                        //  ResetAll();
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }     
 
 
         }

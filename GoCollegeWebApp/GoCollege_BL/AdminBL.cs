@@ -28,10 +28,7 @@ namespace GoCollege_BL
                {
                    conn.BeginTransaction();
 
-                   string encryptedPassword = objPasswordBL.GenerateHash(adminPWD);
-                   adminPWD = encryptedPassword;
-
-                   dvMsg = objAdmiDL.FetchAdminDetails(conn.con, conn.trans, adminUN, adminPWD);
+                  dvMsg = objAdmiDL.FetchAdminDetails(conn.con, conn.trans, adminUN, objPasswordBL.GenerateHash(adminPWD));
 
                    if (dvMsg.Count.Equals(0))
                    {
@@ -132,6 +129,59 @@ namespace GoCollege_BL
         }
 
 
+        //Code added By Mayur
+        public int AdminEditDetails(long adminID, string adminUserName, string adminFullName, string adminEmailID, long adminMobileNo, string adminNewPassword)
+        {
+            DataView dvMsg = null;
+            int isUpdated = 0;
+            Connection conn = new Connection();
+
+            try
+            {
+                conn.BeginTransaction();
+
+                dvMsg = objAdmiDL.AdminFetchForEditDetails(conn.con, conn.trans, adminID, adminUserName, adminFullName, adminEmailID, adminMobileNo, objPasswordBL.GenerateHash(adminNewPassword));
+
+                if (dvMsg.Count.Equals(0))
+                {
+                    return 0;
+                }
+                else
+                {
+                    if (dvMsg[0]["AdminStatus"].ToString().Equals("R"))
+                    {
+                        isUpdated = objAdmiDL.AdminUpdateFirstLoginAdminDetails(conn.con, conn.trans, adminID, adminUserName, adminFullName, adminEmailID, adminMobileNo, objPasswordBL.GenerateHash(adminNewPassword));
+                    }
+                    else if (dvMsg[0]["AdminStatus"].ToString().Equals("A"))
+                    {
+                        isUpdated = objAdmiDL.AdminUpdateAdminDetails(conn.con, conn.trans, adminID, adminUserName, adminFullName, adminEmailID, adminMobileNo, objPasswordBL.GenerateHash(adminNewPassword));
+                    }
+                }
+
+                if (isUpdated != 1)
+                {
+                    return isUpdated;
+                }
+
+                return isUpdated;
+
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return isUpdated;
+        }
+
+
+        //End
+
+
+
 
         //Update Admin Details
         public int EditAdmin(string adminUN, string adminName, string adminEmail, Int64 adminMobile, string adminPWD)
@@ -176,7 +226,7 @@ namespace GoCollege_BL
 
 
         //Fetch Collge Details
-        public DataView FetchCollgeDetails(string adminUN)
+        public DataView FetchCollgeDetails(Int64 adminID, string adminUN)
         {
             DataView dvMsg = null;
             Connection conn = new Connection();
@@ -184,7 +234,7 @@ namespace GoCollege_BL
             {
                 conn.BeginTransaction();
 
-                dvMsg = objAdmiDL.FetchCollegeDetails(conn.con, conn.trans, adminUN);
+                dvMsg = objAdmiDL.FetchCollegeDetails(conn.con, conn.trans,adminID, adminUN);
 
                 if (dvMsg.Count.Equals(0))
                 {
@@ -251,7 +301,7 @@ namespace GoCollege_BL
             //  return dvMsg.Table.DefaultView;
             return 0;
 
-            return 0;
+            
         }
 
         //public DataView GetdvMsg()

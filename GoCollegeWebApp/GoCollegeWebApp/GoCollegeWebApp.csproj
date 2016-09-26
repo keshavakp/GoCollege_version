@@ -61,10 +61,12 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddFaculty.aspx" />
     <Content Include="AdminEditDetails.aspx" />
     <Content Include="AdminHome.aspx" />
     <Content Include="AdminLogin.aspx" />
     <Content Include="AdminUpdateCollege.aspx" />
+    <Content Include="CourseDetails.aspx" />
     <Content Include="EditCollege.aspx" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
@@ -160,6 +162,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddFaculty.aspx.cs">
+      <DependentUpon>AddFaculty.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddFaculty.aspx.designer.cs">
+      <DependentUpon>AddFaculty.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminEditDetails.aspx.cs">
       <DependentUpon>AdminEditDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -194,6 +203,13 @@
     </Compile>
     <Compile Include="AdminUpdateCollege.aspx.designer.cs">
       <DependentUpon>AdminUpdateCollege.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CourseDetails.aspx.cs">
+      <DependentUpon>CourseDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CourseDetails.aspx.designer.cs">
+      <DependentUpon>CourseDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="EditCollege.aspx.cs">
       <DependentUpon>EditCollege.aspx</DependentUpon>

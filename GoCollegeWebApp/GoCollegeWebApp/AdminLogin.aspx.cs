@@ -22,10 +22,10 @@ namespace GoCollegeWebApp
                     try
                     {
                         //Reset Admin Sessions
+                        Session["AdminID"] = null;
                         Session["AdminUserName"] = null;
                         Session["AdminLogin"] = null;
                         Session["UserType"] = null;
-
                         ResetAll();
                     }
                     catch(Exception ex)
@@ -33,43 +33,32 @@ namespace GoCollegeWebApp
 
                     }
                 }
-
          }
 
         protected void adminLoginbtn_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
             {
-                string adminUN, adminPWD;
-
-                // Fetching Values from Text Box
-                adminUN = adminUserName.Text.ToString();
-                adminPWD = adminPassword.Text.ToString();
-
                DataView dv = new DataView();
-               dv = objadminBL.AdminLogin(adminUN, adminPWD);
+               dv = objadminBL.AdminLogin(adminUserName.Text.ToString(), adminPassword.Text.ToString());
 
                if (!dv.Count.Equals(0))
-               {
+               {                 
 
-                   string isFirstTimeLogin;
-
-                   isFirstTimeLogin = dv[0]["AdminStatus"].ToString();
-
-                   if (isFirstTimeLogin.Equals("R"))
+                   if ( dv[0]["AdminStatus"].ToString().Equals("R"))
                    {
                        //Set Admin Sessions
-
-                       Session["AdminUserName"] = adminUN;
+                       Session["AdminID"] = dv[0]["AdminID"].ToString();
+                       Session["AdminUserName"] = adminUserName.Text.ToString(); 
                        Session["AdminLogin"] = "true";
                        Session["UserType"] = "Admin";
                        Response.Redirect("~/AdminEditDetails.aspx");
                    }
-                   else if (isFirstTimeLogin.Equals("A"))
+                   else if (dv[0]["AdminStatus"].ToString().Equals("A"))
                    {
                        //Set Admin Sessions
-
-                       Session["AdminUserName"] = adminUN;
+                       Session["AdminID"] = dv[0]["AdminID"].ToString();
+                       Session["AdminUserName"] = adminUserName.Text.ToString(); 
                        Session["AdminLogin"] = "true";
                        Session["UserType"] = "Admin";
                        Response.Redirect("~/AdminUpdateCollege.aspx");

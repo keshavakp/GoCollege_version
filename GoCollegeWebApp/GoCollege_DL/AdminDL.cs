@@ -49,6 +49,162 @@ namespace GoCollege_DL
             return MyDataSet.Tables[0].DefaultView;        
         }
 
+        //Code Added By Mayur
+
+        public DataView AdminFetchForEditDetails(SqlConnection con, SqlTransaction trans, long adminID, String adminUserName, String adminFullName, String adminEmailID, long adminMobileNo, String adminNewPassword)
+        {
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+
+            try
+            {
+                qry = "Select AdminStatus from tblAdmin where AdminUserName=@UserName and AdminID=@AdminID";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+                SqlParameter param;
+
+                // parameter for UserName column
+                param = new SqlParameter("@UserName", SqlDbType.VarChar, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminUserName;
+                cmd.Parameters.Add(param);
+
+                // parameter for Password column
+                param = new SqlParameter("@AdminID", SqlDbType.BigInt, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminID;
+                cmd.Parameters.Add(param);
+
+                MyDataAdapter = new SqlDataAdapter(cmd);
+                MyDataAdapter.Fill(MyDataSet);
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+
+            return MyDataSet.Tables[0].DefaultView;
+        }
+
+        public int AdminUpdateFirstLoginAdminDetails(SqlConnection con, SqlTransaction trans, long adminID, String adminUserName, String adminFullName, String adminEmailID, long adminMobileNo, String adminNewPassword)
+        {
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            int isUpdated = 0;
+
+            try
+            {
+                qry = "UPDATE tblAdmin SET AdminName=@AdminName, AdminEmail = @AdminEmail, AdminMobile = @AdminMobile, AdminStatus=@AdminStatus where AdminID = @AdminID and AdminUserName = @AdminUserName and AdminStatus = 'R'";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+                SqlParameter param;
+
+                // parameter for UserName column
+                param = new SqlParameter("@AdminName", SqlDbType.VarChar, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminUserName;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@AdminEmail", SqlDbType.VarChar, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminEmailID;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@AdminMobile", SqlDbType.BigInt, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminMobileNo;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@AdminStatus", SqlDbType.Char, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = 'A';
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@AdminID", SqlDbType.BigInt, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminID;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@AdminUserName", SqlDbType.VarChar, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminUserName;
+                cmd.Parameters.Add(param);
+
+                //MyDataAdapter = new SqlDataAdapter(cmd);
+                isUpdated = cmd.ExecuteNonQuery();
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+
+            return isUpdated;
+        }
+
+        public int AdminUpdateAdminDetails(SqlConnection con, SqlTransaction trans, long adminID, String adminUserName, String adminFullName, String adminEmailID, long adminMobileNo, String adminNewPassword)
+        {
+            int isUpdated = 0;
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+
+            try
+            {
+                qry = "UPDATE tblAdmin SET AdminName=@AdminName, AdminEmail = @AdminEmail, AdminMobile = @AdminMobile where AdminID = @AdminID and AdminUserName = @AdminUserName";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+                SqlParameter param;
+
+                // parameter for UserName column
+                param = new SqlParameter("@AdminName", SqlDbType.VarChar, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminUserName;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@AdminEmail", SqlDbType.VarChar, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminEmailID;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@AdminMobile", SqlDbType.BigInt, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminMobileNo;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@AdminID", SqlDbType.BigInt, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminID;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@AdminUserName", SqlDbType.VarChar, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminUserName;
+                cmd.Parameters.Add(param);
+
+                isUpdated = cmd.ExecuteNonQuery();
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+
+            return isUpdated;
+        }
+
+        //end
+
+
+
+
+
+
         //Check for Existing Email and Mobile Number from Admin Table
 
         public DataView ChkForExisting(SqlConnection con, SqlTransaction trans)
@@ -59,7 +215,7 @@ namespace GoCollege_DL
             string qry = "";
             try
             {
-                qry = "Select * from tblAdmin";
+                qry = "Select * from tblCollege";
                 cmd = new SqlCommand(qry, con, trans);
                 cmd.CommandType = CommandType.Text;
              
@@ -151,7 +307,7 @@ namespace GoCollege_DL
        
 
         //Get College Details
-        public DataView FetchCollegeDetails(SqlConnection con, SqlTransaction trans, string adminUN)
+        public DataView FetchCollegeDetails(SqlConnection con, SqlTransaction trans,Int64 adminID, string adminUN)
         {
 
             DataSet MyDataSet = new DataSet();
@@ -160,10 +316,16 @@ namespace GoCollege_DL
             string qry = "";
             try
             {
-                qry = "Select * from tblCollege where CollegeID in(select CollegeID from tblAdmin where AdminUserName=@UserName)";
+                qry = "Select * from tblCollege where CollegeID in(select CollegeID from tblAdmin where AdminID=@AdminID and AdminUserName=@UserName)";
                 cmd = new SqlCommand(qry, con, trans);
                 cmd.CommandType = CommandType.Text;
                 SqlParameter param;
+
+                // parameter for UserName column
+                param = new SqlParameter("@AdminID", SqlDbType.BigInt,10);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminID;
+                cmd.Parameters.Add(param);
 
 
                 // parameter for UserName column
@@ -245,27 +407,35 @@ namespace GoCollege_DL
                 param.Value = clgName;
                 cmd.Parameters.Add(param);
 
-                // parameter for Admin Name column
-                param = new SqlParameter("@CollgeEmail", SqlDbType.VarChar, 250);
+                // parameter for COllege Email column
+                param = new SqlParameter("@CollegeEmail", SqlDbType.VarChar, 250);
                 param.Direction = ParameterDirection.Input;
                 param.Value = clgEmail;
                 cmd.Parameters.Add(param);
 
-                // parameter for Admin Email column
+                // parameter for College Phone column
                 param = new SqlParameter("@CollegePhone", SqlDbType.BigInt, 10);
                 param.Direction = ParameterDirection.Input;
                 param.Value = clgPhone;
                 cmd.Parameters.Add(param);
 
 
-                // parameter for Admin Mobile column
+                // parameter for College Mobile column
                 param = new SqlParameter("@CollegeMobile", SqlDbType.BigInt, 10);
                 param.Direction = ParameterDirection.Input;
                 param.Value = clgMobile;
                 cmd.Parameters.Add(param);
 
 
-                // parameter for Admin Status column
+
+                // parameter for College Mobile column
+                param = new SqlParameter("@CollegeAddress", SqlDbType.VarChar, 250);
+                param.Direction = ParameterDirection.Input;
+                param.Value = clgAddress;
+                cmd.Parameters.Add(param);
+
+
+                // parameter for College Status column
                 param = new SqlParameter("@CollegeStatus", SqlDbType.Char, 1);
                 param.Direction = ParameterDirection.Input;
                 param.Value = 'A';
@@ -286,10 +456,10 @@ namespace GoCollege_DL
         }
         
         //Add Faculty
-        public DataView CheckForExistingEIDs
-        { 
+        //public DataView CheckForExistingEIDs
+        //{ 
 
-        }
+        //}
         
     }
 }

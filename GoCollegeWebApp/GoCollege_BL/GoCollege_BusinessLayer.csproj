@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AcademicsBL.cs" />
     <Compile Include="AdminBL.cs" />
     <Compile Include="PasswordBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
