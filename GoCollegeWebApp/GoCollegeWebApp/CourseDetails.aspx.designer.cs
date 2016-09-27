@@ -13,13 +13,31 @@ namespace GoCollegeWebApp {
     public partial class CourseDetails {
         
         /// <summary>
-        /// divGridView control.
+        /// divDataGrid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divGridView;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDataGrid;
+        
+        /// <summary>
+        /// dgCourseDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataGrid dgCourseDetails;
+        
+        /// <summary>
+        /// errMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errMsg;
         
         /// <summary>
         /// divAdd control.
@@ -40,21 +58,75 @@ namespace GoCollegeWebApp {
         protected global::System.Web.UI.WebControls.TextBox cName;
         
         /// <summary>
-        /// collgeEmail control.
+        /// cShortName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox collgeEmail;
+        protected global::System.Web.UI.WebControls.TextBox cShortName;
         
         /// <summary>
-        /// collegePhone control.
+        /// cNoSems control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox collegePhone;
+        protected global::System.Web.UI.WebControls.TextBox cNoSems;
+        
+        /// <summary>
+        /// coursebtnSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button coursebtnSubmit;
+        
+        /// <summary>
+        /// divEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEdit;
+        
+        /// <summary>
+        /// editcName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox editcName;
+        
+        /// <summary>
+        /// editcShortName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox editcShortName;
+        
+        /// <summary>
+        /// editcTotalSems control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox editcTotalSems;
+        
+        /// <summary>
+        /// editcoursebtnSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button editcoursebtnSubmit;
     }
 }

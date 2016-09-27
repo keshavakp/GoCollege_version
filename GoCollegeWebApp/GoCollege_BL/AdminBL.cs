@@ -261,8 +261,6 @@ namespace GoCollege_BL
 
         }
 
-
-
         //Update College Details
         public int UpdateCollegeDetails(string clgCode,string clgName,string clgEmail,Int64 clgPhone,Int64 clgMobile,string clgAddress)
         {
@@ -304,12 +302,93 @@ namespace GoCollege_BL
             
         }
 
-        //public DataView GetdvMsg()
-        //{
-        //    return dvMsg;
-        //}
+      
+
+        //Insert New Course
+        public int AddCourse(string cName, string cShortName, Int16 cTotalSems,Int64 CollegeID)
+        {
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+            try
+            {
+                conn.BeginTransaction();
+
+                int qryResult = 0;
+
+                dvMsg = objAdmiDL.FetchForExistingCourseName(conn.con, conn.trans, cName, CollegeID);
+
+                if (dvMsg.Count != 0)
+                {
+                    conn.RollbackTransaction();
+                    qryResult = -1;
+                }
+
+                else
+                {
+                    qryResult = objAdmiDL.AddCourse(conn.con, conn.trans, cName, cShortName, cTotalSems, CollegeID);
+                }
+
+                if (qryResult == 1)
+                {
+                    conn.CommitTransaction();         
+                    return qryResult;
+
+                }
+
+                conn.CommitTransaction();
+                return qryResult;
+
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            //  return dvMsg.Table.DefaultView;
+            return 0;
+        }
+
+        //Fetch All Course Details
+        public DataView FetchAllCourse(Int64 adminID)
+        {
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+            try
+            {
+                conn.BeginTransaction();
+
+                dvMsg = objAdmiDL.FetchAllCourse(conn.con, conn.trans, adminID);
+
+                if (dvMsg.Count.Equals(0))
+                {
+                    conn.CommitTransaction();
+
+                    return dvMsg.Table.DefaultView;
+
+                }
+
+                conn.CommitTransaction();
+
+                return dvMsg.Table.DefaultView;
+
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dvMsg.Table.DefaultView;
+
+        }
 
         
+
     }
 
 }

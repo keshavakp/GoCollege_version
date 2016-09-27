@@ -11,6 +11,10 @@ namespace GoCollegeWebApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["CollegeID"] != null)
+            {
+               hfCollegeID.Value = Session["CollegeID"].ToString();
+            }
 
         }
     }

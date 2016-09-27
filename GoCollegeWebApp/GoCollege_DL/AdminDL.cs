@@ -460,6 +460,140 @@ namespace GoCollege_DL
         //{ 
 
         //}
+
+        //Insert New Course
+        public int AddCourse(SqlConnection con, SqlTransaction trans, string cName, string cShortName, Int16 cTotalSems, Int64 CollegeID)
+        {
+
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            try
+            {
+
+                qry = "Insert into tblCourse values(@CollegeID,@CourseName,@CourseShortName,@TotalSems,@Status)";
+
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+                SqlParameter param;
+
+                param = new SqlParameter("@CollegeID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = CollegeID;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@CourseName", SqlDbType.VarChar, 250);
+                param.Direction = ParameterDirection.Input;
+                param.Value = cName;
+                cmd.Parameters.Add(param);
+
+
+                param = new SqlParameter("@CourseShortName", SqlDbType.VarChar, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = cShortName;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@TotalSems", SqlDbType.Int);
+                param.Direction = ParameterDirection.Input;
+                param.Value = cTotalSems;
+                cmd.Parameters.Add(param);
+
+             
+
+                param = new SqlParameter("@Status", SqlDbType.Char, 1);
+                param.Direction = ParameterDirection.Input;
+                param.Value = "A";
+                cmd.Parameters.Add(param);
+
+                int retValue = 0;
+
+                retValue = cmd.ExecuteNonQuery();
+                return retValue;
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+            return 0;
+
+        }
+
+        //Check For Existing COurse
+        public DataView FetchForExistingCourseName(SqlConnection con, SqlTransaction trans, string cName,Int64 collegeID)
+        {
+
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            try
+            {
+
+                qry = "select * from tblCourse where CourseName = @CourseName and CourseStatus='A' and CollegeID=@CollegeID ";
+
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+                SqlParameter param;
+
+                param = new SqlParameter("@CourseName", SqlDbType.VarChar, 250);
+                param.Direction = ParameterDirection.Input;
+                param.Value = cName;
+                cmd.Parameters.Add(param);
+
+
+                param = new SqlParameter("@CollegeID", SqlDbType.BigInt, 10);
+                param.Direction = ParameterDirection.Input;
+                param.Value = collegeID;
+                cmd.Parameters.Add(param);
+
+
+                MyDataAdapter = new SqlDataAdapter(cmd);
+                MyDataAdapter.Fill(MyDataSet);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return MyDataSet.Tables[0].DefaultView;
+
+        }
+
+        //Fetch All Course Details
+        public DataView FetchAllCourse(SqlConnection con, SqlTransaction trans, Int64 adminID)
+        {
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            try
+            {
+
+                qry = "select * from tblCourse where CollegeID in (select CollegeID from tblAdmin where AdminID=@AdminID)";
+
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+                SqlParameter param;
+
+                param = new SqlParameter("@AdminID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminID;
+                cmd.Parameters.Add(param);
+
+                MyDataAdapter = new SqlDataAdapter(cmd);
+                MyDataAdapter.Fill(MyDataSet);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return MyDataSet.Tables[0].DefaultView;
+
+        }
+        
         
     }
 }

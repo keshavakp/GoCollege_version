@@ -22,10 +22,10 @@ namespace GoCollegeWebApp
                     try
                     {
                         //Reset Admin Sessions
-                        Session["AdminID"] = null;
-                        Session["AdminUserName"] = null;
-                        Session["AdminLogin"] = null;
-                        Session["UserType"] = null;
+                        //Session["AdminID"] = null;
+                        //Session["AdminUserName"] = null;
+                        //Session["AdminLogin"] = null;
+                        //Session["UserType"] = null;
                         ResetAll();
                     }
                     catch(Exception ex)
@@ -48,6 +48,7 @@ namespace GoCollegeWebApp
                    if ( dv[0]["AdminStatus"].ToString().Equals("R"))
                    {
                        //Set Admin Sessions
+                       Session["CollegeID"] = dv[0]["CollegeID"].ToString();
                        Session["AdminID"] = dv[0]["AdminID"].ToString();
                        Session["AdminUserName"] = adminUserName.Text.ToString(); 
                        Session["AdminLogin"] = "true";
@@ -57,6 +58,7 @@ namespace GoCollegeWebApp
                    else if (dv[0]["AdminStatus"].ToString().Equals("A"))
                    {
                        //Set Admin Sessions
+                       Session["CollegeID"] = dv[0]["CollegeID"].ToString();
                        Session["AdminID"] = dv[0]["AdminID"].ToString();
                        Session["AdminUserName"] = adminUserName.Text.ToString(); 
                        Session["AdminLogin"] = "true";

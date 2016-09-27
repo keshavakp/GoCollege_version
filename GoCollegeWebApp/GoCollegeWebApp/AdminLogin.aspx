@@ -19,9 +19,9 @@
 </head>
 <body>   
    <div class="login">
-		<h1><a href="Index.aspx">Go College  </a></h1>
+		<h1><a href="Index.aspx"></a></h1>
 		<div class="login-bottom">
-			<h2 class="text-center">Admin Login</h2>
+			<h2 class="text-center">Login</h2>
 			<form id="adminLogin" runat="server">
 
             <div class="col-md-2 ">								
@@ -33,7 +33,7 @@
                 </div>
 
 				<div class="login-mail">  
-                    <asp:TextBox ID="adminUserName" runat="server" placeholder="User Name" required=""></asp:TextBox>
+                    <asp:TextBox ID="adminUserName" runat="server" placeholder="User Name/ USN / FacultyCode" required=""></asp:TextBox>
 					<i class="fa fa-user"></i>
 				</div>
 				<div class="login-mail">					

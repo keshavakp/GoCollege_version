@@ -4,6 +4,82 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 */
+/*Custom Css styles*/
+
+
+/*DataGrid Start*/
+
+/**/
+/*Main Grid*/
+.HeaderTextContent {
+    color: white;
+    font-style: normal;
+    font-weight: 200;
+    border-color: #47476b;
+    font-size: 13pt;
+    background-color: #1ABC9C;
+    text-align:center;
+}
+/*0570A9*/
+    .HeaderTextContent td {
+        padding: 3px 0px 3px 3px;
+    }
+
+
+.MainTextContent {
+    color: #333;
+    border-color: #00002c;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 11pt ;
+}
+
+    .MainTextContent td {
+        padding: 3px 0px 3px 3px;
+    }
+
+
+/*Child Grid */
+.ChildHeaderTextContent {
+    color:#1ABC9C;
+    font-style: normal;
+    font-weight: 200;
+    border-color: #47476b;
+    font-size: 12pt;
+    background-color: #00002c;   
+    text-align:center;
+}
+/*0570A9*/
+    .HeaderTextContent td {
+        padding: 3px 0px 3px 3px;
+    }
+
+.ChildMainTextContent {
+    color: #00002c;
+    border-color: #00002c;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 11pt ;
+}
+
+    .MainTextContent td {
+        padding: 3px 0px 3px 3px;
+    }
+/**/
+
+
+
+/*End*/
+
+
+
+
+/*End*/
+
+
+
+
+
 h4, h5, h6,
 h1, h2, h3 {
     margin: 0;
@@ -651,6 +727,11 @@ i.fa.fa-globe {
 /* Custome CSS*/
 .errMsg {
     color:#fb0d0d;
+    font-size:12px;
+}
+
+.successMsg {
+    color:#07a823;
     font-size:12px;
 }
 
