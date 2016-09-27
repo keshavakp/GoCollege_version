@@ -39,7 +39,6 @@ namespace GoCollege_BL
                    }
 
                    conn.CommitTransaction();
-
                    return dvMsg.Table.DefaultView;
 
                }
@@ -160,9 +159,11 @@ namespace GoCollege_BL
 
                 if (isUpdated != 1)
                 {
+                    conn.RollbackTransaction();
                     return isUpdated;
                 }
 
+                conn.CommitTransaction();
                 return isUpdated;
 
             }
@@ -203,6 +204,7 @@ namespace GoCollege_BL
 
                 if (qryResult== 0)
                 {
+                    conn.RollbackTransaction();
                     return qryResult;
 
                 }
@@ -238,7 +240,7 @@ namespace GoCollege_BL
 
                 if (dvMsg.Count.Equals(0))
                 {
-                    conn.CommitTransaction();
+                    conn.RollbackTransaction();
 
                     return dvMsg.Table.DefaultView;
 
@@ -279,6 +281,7 @@ namespace GoCollege_BL
 
                 if (qryResult == 0)
                 {
+                    conn.RollbackTransaction();
                     return qryResult;
 
                 }
@@ -319,7 +322,6 @@ namespace GoCollege_BL
 
                 if (dvMsg.Count != 0)
                 {
-                    conn.RollbackTransaction();
                     qryResult = -1;
                 }
 
@@ -334,6 +336,12 @@ namespace GoCollege_BL
                     return qryResult;
 
                 }
+                else if (qryResult == -1)
+                {
+                    conn.RollbackTransaction();
+                    return qryResult;
+                }
+
 
                 conn.CommitTransaction();
                 return qryResult;
@@ -364,8 +372,7 @@ namespace GoCollege_BL
 
                 if (dvMsg.Count.Equals(0))
                 {
-                    conn.CommitTransaction();
-
+                    conn.RollbackTransaction();
                     return dvMsg.Table.DefaultView;
 
                 }
@@ -387,8 +394,115 @@ namespace GoCollege_BL
 
         }
 
-        
+        //Delete Course Details
+         //Delete Course
+        public int DeleteCourse(Int64 courseID)
+        {
+            DataView dvMsg = null;
+            int isdeleted = 0;
+            Connection conn = new Connection();
 
+            try
+            {
+                conn.BeginTransaction();
+                isdeleted = objAdmiDL.DeleteCourse(conn.con,conn.trans,courseID);
+
+                if (isdeleted == 0)
+                {
+                    conn.RollbackTransaction();
+                    return isdeleted;
+                }
+                conn.CommitTransaction();
+                return isdeleted;
+
+
+            }
+            catch (Exception ex)
+            {
+ 
+            }
+
+            return isdeleted;
+
+        }
+
+
+
+        //Fetch Course For Edit
+        public DataView FetchCourseForEdit(Int64 courseID)
+        {
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+            try
+            {
+                conn.BeginTransaction();
+
+                dvMsg = objAdmiDL.FetchCourseForEdit(conn.con, conn.trans, courseID);
+
+                if (dvMsg.Count.Equals(0))
+                {
+                    conn.RollbackTransaction();
+                    return dvMsg.Table.DefaultView;
+
+                }
+
+                conn.CommitTransaction();
+
+                return dvMsg.Table.DefaultView;
+
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dvMsg.Table.DefaultView;
+
+        }
+
+        //Update Course
+        public int UpdateCourseDetails(Int64 courseID, string cName, string cShortName, Int16 cTotalSems, Int64 CollegeID)
+        {
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+            try
+            {
+                conn.BeginTransaction();
+
+
+                int qryResult = 0;
+
+                qryResult = objAdmiDL.UpdateCourseDetails(conn.con, conn.trans, courseID, cName, cShortName, cTotalSems, CollegeID);
+
+                //dvMsg = objAdmiDL.FetchAdminDetails(conn.con, conn.trans, adminUN, adminPWD);
+
+                if (qryResult == 0)
+                {
+                    conn.RollbackTransaction();
+                    return qryResult;
+
+                }
+
+                conn.CommitTransaction();
+
+                return 1;
+
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            //  return dvMsg.Table.DefaultView;
+            return 0;
+
+        }
     }
 
 }

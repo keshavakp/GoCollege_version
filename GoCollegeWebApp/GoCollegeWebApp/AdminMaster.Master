@@ -161,7 +161,7 @@
 
 
                                 <li>
-                                    <a href="AddStudent.aspx" class=" hvr-bounce-to-right"><i class="fa fa-user-plus nav_icon"></i><span class="nav-label">Add Student</span> </a>
+                                    <a href="StudentDetails.aspx" class=" hvr-bounce-to-right"><i class="fa fa-user-plus nav_icon"></i><span class="nav-label">Add Student</span> </a>
                                 </li>
 
                                 <li>

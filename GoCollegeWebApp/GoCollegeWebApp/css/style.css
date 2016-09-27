@@ -28,7 +28,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 .MainTextContent {
     color: #333;
-    border-color: #00002c;
+    border-color: #333;
     font-style: normal;
     font-weight: 300;
     font-size: 11pt ;
@@ -735,6 +735,11 @@ i.fa.fa-globe {
     font-size:12px;
 }
 
+.lblColor {
+    color:#333;
+    font-size: 11pt ;
+
+}
 
 /* */
 
