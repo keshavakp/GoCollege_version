@@ -120,7 +120,7 @@ namespace GoCollege_DL
                 param.Value = adminMobileNo;
                 cmd.Parameters.Add(param);
 
-                param = new SqlParameter("@AdminStatus", SqlDbType.Char, 50);
+                param = new SqlParameter("@AdminStatus", SqlDbType.Char,1);
                 param.Direction = ParameterDirection.Input;
                 param.Value = 'A';
                 cmd.Parameters.Add(param);
@@ -723,5 +723,40 @@ namespace GoCollege_DL
 
  
        }
+        
+    
+        //Fetch All Semesters By CourseID
+        public DataView FetchAllSemsByCourseID(SqlConnection con, SqlTransaction trans, long courseID)
+        {
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            try
+            {
+                qry = " select * from tblSemester where CourseID= @CourseID";
+
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+                SqlParameter param;
+
+                // parameter for College Code
+                param = new SqlParameter("@CourseID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = courseID;
+                cmd.Parameters.Add(param);
+
+                MyDataAdapter = new SqlDataAdapter(cmd);
+                MyDataAdapter.Fill(MyDataSet);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return MyDataSet.Tables[0].DefaultView; ;
+ 
+        }
+
     }
 }

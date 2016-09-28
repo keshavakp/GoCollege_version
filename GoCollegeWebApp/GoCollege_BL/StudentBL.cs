@@ -13,9 +13,74 @@ namespace GoCollege_BL
     {
 
         StudentDL objStudentBL = new StudentDL();
-        public DataView AddStudent(string studentUSN, string studentName, long collegeID, long studentMobile, string studentEmail, string studentAddress, long courseID, long semID, string studentPassword, string flag)
+        PasswordBL objPasswordBL = new PasswordBL();
+
+        public int AddStudent(string studentUSN,  long collegeID,long courseID, long semID, string studentPassword,string flag)
         {
            
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+            int isStudentAdded = 0;
+
+            try
+            {
+                conn.BeginTransaction();
+                //checkfor duplication
+
+                if (flag.Equals("AdminAdd"))
+                {
+                    dvMsg = objStudentBL.FetchForExistingStudentUSN(conn.con, conn.trans, studentUSN, collegeID);
+                    if (!dvMsg.Count.Equals(0))
+                    {
+                        conn.RollbackTransaction();
+                        return -1;
+                    }
+                    else
+                    {
+                        //conn.CommitTransaction();
+
+                        int isStudentAddedStudentTable =0;
+                        isStudentAddedStudentTable= objStudentBL.AddStudent(conn.con,conn.trans, studentUSN, collegeID, courseID, semID, objPasswordBL.GenerateHash(studentPassword));
+
+                        if (isStudentAddedStudentTable == 1)
+                        {
+                            conn.CommitTransaction();
+                            return isStudentAddedStudentTable;
+                        }
+                        else
+                        {
+                            conn.RollbackTransaction();
+                            return isStudentAddedStudentTable;
+                        }
+
+                    }
+                }
+                else if (flag.Equals("AdminEdit"))
+                {
+
+
+                }
+                else if (flag.Equals("AdminDelete"))
+                {
+
+                }
+                return isStudentAdded;
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return isStudentAdded;
+        }
+
+
+        public DataView AddStudentTest(string studentUSN, string studentName, long collegeID, long studentMobile, string studentEmail, string studentAddress, long courseID, long semID, string studentPassword, string flag)
+        {
+
             DataView dvMsg = null;
             Connection conn = new Connection();
             int isStudentAdded = 0;
@@ -64,9 +129,5 @@ namespace GoCollege_BL
         }
 
 
-        public void AddNewStudent(string studentUSN, long collegeID, long courseID, long semID, string studentPassword, string studentStatus)
-        {
- 
-        }
     }
 }

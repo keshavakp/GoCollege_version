@@ -503,6 +503,43 @@ namespace GoCollege_BL
             return 0;
 
         }
+
+        //Fetch All Sems
+        public DataView FetchAllSemsByCourseID(long courseID)
+        {
+
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+            try
+            {
+                conn.BeginTransaction();
+
+                dvMsg = objAdmiDL.FetchAllSemsByCourseID(conn.con, conn.trans, courseID);
+
+                if (dvMsg.Count.Equals(0))
+                {
+                    conn.RollbackTransaction();
+                    return dvMsg.Table.DefaultView;
+
+                }
+
+                conn.CommitTransaction();
+
+                return dvMsg.Table.DefaultView;
+
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dvMsg.Table.DefaultView;
+
+ 
+        }
     }
 
 }
