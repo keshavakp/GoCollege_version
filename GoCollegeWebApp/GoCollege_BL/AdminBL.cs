@@ -14,7 +14,7 @@ namespace GoCollege_BL
 
     public class AdminBL
     {
-          AdminDL objAdmiDL = new AdminDL();
+        AdminDL objAdmiDL = new AdminDL();
 
         PasswordBL objPasswordBL = new PasswordBL();
         

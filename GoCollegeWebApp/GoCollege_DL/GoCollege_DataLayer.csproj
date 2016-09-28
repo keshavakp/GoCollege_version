@@ -40,7 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminDL.cs" />
+    <Compile Include="FacultyDL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StudentDL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GoCollege_CL\GoCollege_ConnectionLayer.csproj">

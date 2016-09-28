@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using GoCollege_BL;
 
 namespace GoCollegeWebApp
 {
@@ -13,5 +15,20 @@ namespace GoCollegeWebApp
         {
 
         }
+
+
+
+        //lnk Add Click
+        protected void lnkAddNewFaculty(object sender, EventArgs e)
+        {
+
+        }
+
+        //lnk View All Click
+        protected void lnkViewAll(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

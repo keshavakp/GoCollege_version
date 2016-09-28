@@ -90,8 +90,6 @@
 <body>
     <form id="form1" runat="server">
         <div id="wrapper">
-
-
             <nav class="navbar-default navbar-static-top" role="navigation">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
