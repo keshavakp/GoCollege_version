@@ -32,14 +32,38 @@ namespace GoCollegeWebApp
 
         public void BindStudentGrid()
         {
+            divAdd.Visible = false;
+            divDataGrid.Visible = true;
 
- 
+            divEdit.Visible = false;
+            DataView dv = new DataView();
+            dv= objStudentBL.FetchAllStudentForGrid(long.Parse(Session["CollegeID"].ToString()));
+
+            if (!dv.Count.Equals(0))
+            {
+                dgStudentDetails.DataSource = dv;
+                dgStudentDetails.DataBind();
+            } 
         }
 
-        //edit click
+        //edit click Bind Data to Student Edit FOrm
         protected void btnStudentEdit_Command(object sender, CommandEventArgs e)
         {
+            divAdd.Visible = false;
+            divDataGrid.Visible = false;
+            divEdit.Visible = true;
 
+            DataView dv = new DataView();
+            dv = objStudentBL.FetchStudentDetailsByStudentID(long.Parse(e.CommandName.ToString()), long.Parse(Session["CollegeID"].ToString()));
+
+            if (!dv.Count.Equals(0))
+            {
+                txteditStudentUSN.Text = dv[0]["StudentUSN"].ToString();
+                txteditStudentName.Text = dv[0]["StudentName"].ToString();
+                txteditStudentMobile.Text = dv[0]["StudentMobile"].ToString();
+                txteditStudentEmail.Text = dv[0]["StudentEmail"].ToString();
+                txteditStudentAddress.Text = dv[0]["StudentAddress"].ToString();
+            }          
         }
 
         //Delete click
@@ -52,12 +76,17 @@ namespace GoCollegeWebApp
         protected void lnkAddNewStudent(object sender, EventArgs e)
         {
             BindCourse();
+
+            divEdit.Visible = false;
+            divAdd.Visible = true;
+            divDataGrid.Visible = false;
+
         }
 
         //View All click
         protected void lnkViewAll(object sender, EventArgs e)
         {
-
+            BindStudentGrid();
         }
 
         //Bind Course List to Grid
@@ -105,9 +134,24 @@ namespace GoCollegeWebApp
             if (Page.IsValid)
             {
                 int chkqry=0;
-                chkqry = objStudentBL.AddStudent(txtstudentUSN.Text.ToString(), long.Parse(ddlstudentCourse.SelectedValue.ToString()), long.Parse(Session["CollegeID"].ToString()), long.Parse(ddlstudentSemester.SelectedValue.ToString()), txtstudentPassword.Text.ToString(), "AdminAdd");
+                chkqry = objStudentBL.AddStudent(txtstudentUSN.Text.ToString(), long.Parse(Session["CollegeID"].ToString()), long.Parse(ddlstudentCourse.SelectedValue.ToString()), long.Parse(ddlstudentSemester.SelectedValue.ToString()), txtstudentPassword.Text.ToString(), "AdminAdd");
  
             }
+        }
+
+
+        //Reset All
+        public void ResetAll()
+        {
+            //Add Form Reset
+            txtstudentPassword.Text = "";
+            txtstudentUSN.Text = "";
+        }
+        
+        //Edit Update Student Click
+        protected void btneditUpdate_Click(object sender, EventArgs e)
+        { 
+
         }
 
 

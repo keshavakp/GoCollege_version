@@ -153,13 +153,13 @@
                                 </li>
 
                                 <li>
-                                    <a href="AddFaculty.aspx" class=" hvr-bounce-to-right"><i class="fa fa-user-plus nav_icon"></i><span class="nav-label">Add Faculty</span> </a>
+                                    <a href="AddFaculty.aspx" class=" hvr-bounce-to-right"><i class="fa fa-users  nav_icon"></i><span class="nav-label">Faculty Management</span> </a>
                                 </li>
 
 
 
                                 <li>
-                                    <a href="StudentDetails.aspx" class=" hvr-bounce-to-right"><i class="fa fa-user-plus nav_icon"></i><span class="nav-label">Add Student</span> </a>
+                                    <a href="StudentDetails.aspx" class=" hvr-bounce-to-right"><i class="fa fa-graduation-cap nav_icon"></i><span class="nav-label">Student Management</span> </a>
                                 </li>
 
                                 <li>

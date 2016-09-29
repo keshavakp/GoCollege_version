@@ -15,6 +15,7 @@ namespace GoCollege_BL
         StudentDL objStudentBL = new StudentDL();
         PasswordBL objPasswordBL = new PasswordBL();
 
+        //Student Add By Admin
         public int AddStudent(string studentUSN,  long collegeID,long courseID, long semID, string studentPassword,string flag)
         {
            
@@ -128,6 +129,74 @@ namespace GoCollege_BL
             return dvMsg.Table.DefaultView;
         }
 
+
+        public DataView FetchAllStudentForGrid(long collegeID)
+        {
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+            int isStudentAdded = 0;
+
+            try
+            {
+                conn.BeginTransaction();
+
+                dvMsg = objStudentBL.FetchAllStudentForGrid(conn.con, conn.trans, collegeID);
+
+                if (dvMsg.Count.Equals(0))
+                {
+                    conn.RollbackTransaction();
+                    return dvMsg.Table.DefaultView;
+
+                }
+
+                conn.CommitTransaction();
+                return dvMsg.Table.DefaultView;
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dvMsg.Table.DefaultView;
+        }
+
+        //Fetch Student For Student Details using StudentID
+
+        public DataView FetchStudentDetailsByStudentID(long studentID,long collegeID)
+        {
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+          //  int isStudentAdded = 0;
+
+            try
+            {
+                conn.BeginTransaction();
+
+                dvMsg = objStudentBL.FetchStudentDetailsByStudentID(conn.con, conn.trans,studentID, collegeID);
+
+                if (dvMsg.Count.Equals(0))
+                {
+                    conn.RollbackTransaction();
+                    return dvMsg.Table.DefaultView;
+
+                }
+
+                conn.CommitTransaction();
+                return dvMsg.Table.DefaultView;
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dvMsg.Table.DefaultView;
+        }  
 
     }
 }

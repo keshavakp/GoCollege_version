@@ -210,7 +210,72 @@ namespace GoCollege_DL
             return isStudentDeleted;
         }
 
+        public DataView FetchAllStudentForGrid(SqlConnection con, SqlTransaction trans, long collegeID)
+        {
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            try
+            {
+                qry = "Select * from tblStudent where CollegeID=@CollegeID ";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+                SqlParameter param;
 
+                param = new SqlParameter("@CollegeID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = collegeID;
+                cmd.Parameters.Add(param);
 
+                MyDataAdapter = new SqlDataAdapter(cmd);
+                MyDataAdapter.Fill(MyDataSet);
+
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+            return MyDataSet.Tables[0].DefaultView;
+        }
+
+        //Fetch Student For Student Details using StudentID
+
+        public DataView FetchStudentDetailsByStudentID(SqlConnection con, SqlTransaction trans, long studentID, long collegeID)
+        {
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            try
+            {
+                qry = "Select * from tblStudent where CollegeID=@CollegeID and StudentID=@StudentID ";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+                SqlParameter param;
+
+                param = new SqlParameter("@CollegeID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = collegeID;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@StudentID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = studentID;
+                cmd.Parameters.Add(param);
+
+                MyDataAdapter = new SqlDataAdapter(cmd);
+                MyDataAdapter.Fill(MyDataSet);
+
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+            return MyDataSet.Tables[0].DefaultView;
+ 
+        }
     }
 }
