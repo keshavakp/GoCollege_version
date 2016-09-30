@@ -157,6 +157,7 @@
     <Content Include="js\skycons.js" />
     <Content Include="js\underscore-min.js" />
     <Content Include="StudentDetails.aspx" />
+    <Content Include="StudentRegistration.aspx" />
     <Content Include="validation.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -226,6 +227,13 @@
     </Compile>
     <Compile Include="StudentDetails.aspx.designer.cs">
       <DependentUpon>StudentDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StudentRegistration.aspx.cs">
+      <DependentUpon>StudentRegistration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentRegistration.aspx.designer.cs">
+      <DependentUpon>StudentRegistration.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

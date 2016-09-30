@@ -41,6 +41,9 @@ namespace GoCollegeWebApp
             {
                DataView dv = new DataView();
                dv = objadminBL.AdminLogin(adminUserName.Text.ToString(), adminPassword.Text.ToString());
+                
+               
+               
 
                if (!dv.Count.Equals(0))
                {                 
@@ -84,6 +87,8 @@ namespace GoCollegeWebApp
             adminUserName.Text = "";
             adminPassword.Text = "";
         }
+
+       
 
     }
 }
