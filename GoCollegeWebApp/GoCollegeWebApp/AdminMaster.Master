@@ -254,6 +254,11 @@
         <script src="js/bootstrap.min.js"> </script>
 
         <asp:HiddenField ID="hfCollegeID" runat="server" />
+        <asp:HiddenField ID="hfUserID" runat="server" />
+        <asp:HiddenField ID="hfUserType" runat="server" />
+        <asp:HiddenField ID="hfUserName" runat="server" />
+
+
 
     </form>
 </body>

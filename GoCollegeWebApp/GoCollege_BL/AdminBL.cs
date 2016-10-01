@@ -30,10 +30,17 @@ namespace GoCollege_BL
 
                   dvMsg = objAdmiDL.FetchAdminDetails(conn.con, conn.trans, adminUN, objPasswordBL.GenerateHash(adminPWD));
 
+
+                  //Fetch Student
+                  if (dvMsg.Count.Equals(0))
+                  {
+                      dvMsg = objAdmiDL.FetchStudentDetails(conn.con, conn.trans, adminUN, objPasswordBL.GenerateHash(adminPWD));
+                  }
+
+                   //Check
                    if (dvMsg.Count.Equals(0))
                    {
                        conn.CommitTransaction();
-
                        return dvMsg.Table.DefaultView;
 
                    }

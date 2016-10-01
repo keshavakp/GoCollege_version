@@ -49,6 +49,47 @@ namespace GoCollege_DL
             return MyDataSet.Tables[0].DefaultView;        
         }
 
+        //Check For Student Login
+        //Check for Login Details
+        public DataView FetchStudentDetails(SqlConnection con, SqlTransaction trans, String adminUN, String adminPWD)
+        {
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            try
+            {
+                qry = "Select * from tblStudent where StudentUSN=@UserName and StudentPassword=@Password and StudentStatus in('R','A')";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+                SqlParameter param;
+
+                // parameter for UserName column
+                param = new SqlParameter("@UserName", SqlDbType.VarChar, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminUN;
+                cmd.Parameters.Add(param);
+
+                // parameter for Password column
+                param = new SqlParameter("@Password", SqlDbType.VarChar, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminPWD;
+                cmd.Parameters.Add(param);
+
+                MyDataAdapter = new SqlDataAdapter(cmd);
+                MyDataAdapter.Fill(MyDataSet);
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+
+            return MyDataSet.Tables[0].DefaultView;
+        }
+
+
+
         //Code Added By Mayur
 
         public DataView AdminFetchForEditDetails(SqlConnection con, SqlTransaction trans, long adminID, String adminUserName, String adminFullName, String adminEmailID, long adminMobileNo, String adminNewPassword)

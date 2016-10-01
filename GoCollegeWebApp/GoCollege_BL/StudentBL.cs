@@ -79,44 +79,52 @@ namespace GoCollege_BL
         }
 
 
-        public DataView AddStudentTest(string studentUSN, string studentName, long collegeID, long studentMobile, string studentEmail, string studentAddress, long courseID, long semID, string studentPassword, string flag)
+        public int EditUpdateStudent(long studentID, long collegeID, string studentUSN, string studentName, string studentEmail, long studentMobile, string studentAddress, long courseID, long semID, string studentPassword, string studentStatus)
         {
 
             DataView dvMsg = null;
             Connection conn = new Connection();
-            int isStudentAdded = 0;
+            int isStudentUpdated= 0;
 
             try
             {
                 conn.BeginTransaction();
                 //checkfor duplication
-                dvMsg = objStudentBL.FetchStudentForDuplicationCheck(conn.con, conn.trans, studentUSN, studentName, collegeID, courseID, studentEmail, studentMobile);
 
-                if (flag.Equals("AdminAdd"))
-                {
-                    if (!dvMsg.Count.Equals(0))
-                    {
-                        return dvMsg.Table.DefaultView;
-                    }
-                    else
-                    {
-                        conn.CommitTransaction();
-                        //int isStudentAddedStudentTable = objStudentBL.AddStudent(studentUSN, studentName, collegeID, studentMobile, studentAddress, courseID, semID, objPasswordBL.GenerateHash(adminNewPassword), flag);
-                    }
-                }
-                else if (flag.Equals("AdminEdit"))
-                {
+                isStudentUpdated = objStudentBL.EditUpdateStudent(conn.con, conn.trans,studentID,collegeID,  studentUSN, studentName, studentEmail,studentMobile,studentAddress, courseID, semID,studentPassword, studentStatus);
+
+       
+                //public int EditUpdateStudent(SqlConnection con, SqlTransaction trans, long studentID, long collegeID, string studentUSN, string studentName, string studentEmail, long studentMobile, string studentAddress, long courseID, long semID, string studentPassword, string studentStatus)
 
 
-                }
-                else if (flag.Equals("AdminDelete"))
-                {
-
-                }
+               // dvMsg = objStudentBL.FetchStudentForDuplicationCheck(conn.con, conn.trans, studentUSN, studentName, collegeID, courseID, studentEmail, studentMobile);
 
 
+                //if (flag.Equals("AdminAdd"))
+                //{
+                //    if (!dvMsg.Count.Equals(0))
+                //    {
+                //        return dvMsg.Table.DefaultView;
+                //    }
+                //    else
+                //    {
+                //        conn.CommitTransaction();
+                //        //int isStudentAddedStudentTable = objStudentBL.AddStudent(studentUSN, studentName, collegeID, studentMobile, studentAddress, courseID, semID, objPasswordBL.GenerateHash(adminNewPassword), flag);
+                //    }
+                //}
+                //else if (flag.Equals("AdminEdit"))
+                //{
 
-                return dvMsg.Table.DefaultView;
+
+                //}
+                //else if (flag.Equals("AdminDelete"))
+                //{
+
+                //}
+
+
+
+                return isStudentUpdated;
             }
             catch (NullReferenceException ex)
             {
@@ -126,7 +134,7 @@ namespace GoCollege_BL
             {
 
             }
-            return dvMsg.Table.DefaultView;
+            return isStudentUpdated;
         }
 
 
@@ -197,6 +205,39 @@ namespace GoCollege_BL
             }
             return dvMsg.Table.DefaultView;
         }  
+
+        public DataView ChkForExistingContactDetails(long studentID,long collegeID,long studentMobile,string studentEmail)            
+        {
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+          //  int isStudentAdded = 0;
+
+            try
+            {
+                conn.BeginTransaction();
+
+                dvMsg = objStudentBL.FetchForExistingStudentContactDetails(conn.con, conn.trans, studentID, collegeID, studentMobile, studentEmail);
+
+                if (dvMsg.Count.Equals(0))
+                {
+                    conn.RollbackTransaction();
+                    return dvMsg.Table.DefaultView;
+
+                }
+
+                conn.CommitTransaction();
+                return dvMsg.Table.DefaultView;
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dvMsg.Table.DefaultView;
+        }
 
     }
 }

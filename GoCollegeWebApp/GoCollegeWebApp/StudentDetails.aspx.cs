@@ -19,13 +19,20 @@ namespace GoCollegeWebApp
         {
             if (!Page.IsPostBack)
             {
-                if (Session["AdminID"] == null)
+                if (Session["UserID"] == null)
                 {
                     Response.Redirect("AdminLogin.apsx");
                 }
                 else
                 {
-                    BindStudentGrid();
+                    if (Session["UserType"] == "A")
+                    {
+                        BindStudentGrid();
+                    }
+                    else
+                    {
+                        Response.Redirect("AdminLogin.apsx");
+                    }
                 }
             }
         }
@@ -49,6 +56,7 @@ namespace GoCollegeWebApp
         //edit click Bind Data to Student Edit FOrm
         protected void btnStudentEdit_Command(object sender, CommandEventArgs e)
         {
+            ResetAll();
             divAdd.Visible = false;
             divDataGrid.Visible = false;
             divEdit.Visible = true;
@@ -76,7 +84,7 @@ namespace GoCollegeWebApp
         protected void lnkAddNewStudent(object sender, EventArgs e)
         {
             BindCourse();
-
+            ResetAll();
             divEdit.Visible = false;
             divAdd.Visible = true;
             divDataGrid.Visible = false;
@@ -87,6 +95,7 @@ namespace GoCollegeWebApp
         protected void lnkViewAll(object sender, EventArgs e)
         {
             BindStudentGrid();
+            ResetAll();
         }
 
         //Bind Course List to Grid
@@ -94,7 +103,7 @@ namespace GoCollegeWebApp
         {
             DataView dv = new DataView();
 
-            dv = objAdminBL.FetchAllCourse(long.Parse(Session["AdminID"].ToString()));
+            dv = objAdminBL.FetchAllCourse(long.Parse(Session["UserID"].ToString()));
 
             ddlstudentCourse.DataSource = dv;
 
@@ -135,7 +144,19 @@ namespace GoCollegeWebApp
             {
                 int chkqry=0;
                 chkqry = objStudentBL.AddStudent(txtstudentUSN.Text.ToString(), long.Parse(Session["CollegeID"].ToString()), long.Parse(ddlstudentCourse.SelectedValue.ToString()), long.Parse(ddlstudentSemester.SelectedValue.ToString()), txtstudentPassword.Text.ToString(), "AdminAdd");
- 
+
+                if (chkqry == 1)
+                {
+                    errMsg.Text = "Student Added Successfully";
+                    ResetAll();
+                    errMsg.CssClass = "successMsg";
+
+                    BindStudentGrid();
+                }
+                else if (chkqry == -1)
+                {
+                    errMsg.Text = "USN Already Exists";
+                }
             }
         }
 
@@ -146,6 +167,9 @@ namespace GoCollegeWebApp
             //Add Form Reset
             txtstudentPassword.Text = "";
             txtstudentUSN.Text = "";
+            
+            errMsg.Text = "";
+            
         }
         
         //Edit Update Student Click

@@ -48,7 +48,7 @@
 
     <script type="text/ecmascript">
         function resetAll() {
-            document.getElementById("<%= adminName.ClientID %>").value = "";
+            document.getElementById("<%= txtStudentName.ClientID%>").value = "";
         }
     </script>
 
@@ -57,22 +57,22 @@
 
 </head>
 <body>
+    <form id="adminEditDetails" runat="server">
 
-    <div class="row">
-        <div class="col-lg-2"></div>
+        <div class="row">
+            <div class="col-lg-2"></div>
 
-        <div class="col-lg-8 ">
+            <div class="col-lg-8 ">
 
-            <div class="validation-system">
+                <div class="validation-system">
 
-                <div class="col-lg-2"></div>
+                    <div class="col-lg-2"></div>
 
-                <div class="col-lg-8">
+                    <div class="col-lg-8">
 
-                    <div class="validation-form">
-                        <!---->
+                        <div class="validation-form">
+                            <!---->
 
-                        <form id="adminEditDetails" runat="server">
                             <h2 class="text-center" style="color: #d95459">Welcome to MyCampuz</h2>
 
                             <h3 class="text-center">Update Your Details </h3>
@@ -87,7 +87,8 @@
 
                                 <div class="col-md-12 form-group1 ">
                                     <label class="control-label">USN</label>
-                                    <asp:TextBox ID="txtStudentUSn" runat="server" placeholder="USN" required=""></asp:TextBox>
+                                    <asp:TextBox ID="txtStudentUSN" runat="server" placeholder="USN" required=""></asp:TextBox>
+                                    <div class="row"></div>
                                 </div>
 
                                 <div class="col-md-12 form-group1 ">
@@ -100,7 +101,7 @@
 
                                 <div class="col-md-12 form-group1 ">
                                     <label class="control-label">Mobile Number</label>
-                                    <asp:TextBox ID="txtStudentMobile" runat="server" placeholder="Mobile Number" required=""></asp:TextBox>
+                                    <asp:TextBox ID="txtStudentMobile" runat="server" placeholder="Mobile Number" required="" MaxLength="10"></asp:TextBox>
                                     <asp:RegularExpressionValidator ID="regexpMobile" runat="server" ErrorMessage="Enter Valid Mobile Number" ControlToValidate="txtStudentMobile" ValidationExpression="[0-9]{10}" Font-Size="Smaller" ForeColor="#FF3300"></asp:RegularExpressionValidator>
 
                                 </div>
@@ -115,9 +116,9 @@
 
                                 <div class="col-md-12 form-group1 ">
                                     <label class="control-label">Address</label>
-                                    <asp:TextBox ID="txtStudentAddress" TextMode="MultiLine" CssClass="email-list1" runat="server" placeholder="Email" required=""></asp:TextBox>
+                                    <asp:TextBox ID="txtStudentAddress" TextMode="MultiLine" CssClass="email-list1" runat="server" placeholder="Full Address" required=""></asp:TextBox>
                                 </div>
-
+                                <br />
                                 <div class="clearfix"></div>
 
                                 <div class="col-md-12 form-group1">
@@ -125,7 +126,7 @@
 
                                     <asp:TextBox ID="txtStudentNewPassword" TextMode="Password" runat="server" placeholder="New Password" required=""></asp:TextBox>
 
-                                    <asp:RegularExpressionValidator ID="regexpPassword" runat="server" ErrorMessage="Please enter minimum 8 character that inlcudes alphanumeric and @$# " ControlToValidate="adminPassword"
+                                    <asp:RegularExpressionValidator ID="regexpPassword" runat="server" ErrorMessage="Please enter minimum 8 character that inlcudes alphanumeric and @$# " ControlToValidate="txtStudentNewPassword"
                                         ValidationExpression="[a-zA-Z0-9@$#]{8,15}"
                                         Font-Size="Smaller" ForeColor="#FF3300"></asp:RegularExpressionValidator>
                                 </div>
@@ -147,21 +148,27 @@
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
-                        </form>
 
-                        <!---->
+                            <!---->
+                        </div>
+
                     </div>
+                    <div class="col-lg-2"></div>
+
 
                 </div>
-                <div class="col-lg-2"></div>
-
-
             </div>
-        </div>
-        <div class="col-lg-2"></div>
+            <div class="col-lg-2"></div>
 
-    </div>
+        </div>
+        <asp:HiddenField ID="hfStudentID" runat="server" />
+        <asp:HiddenField ID="hfCoueseID" runat="server" />
+        <asp:HiddenField ID="hfSemID" runat="server" />
+
+    </form>
+
     <%--// JS--%>
+
     <script src="js/jquery.nicescroll.js"></script>
     <script src="js/scripts.js"></script>
 

@@ -31,13 +31,13 @@ namespace GoCollegeWebApp {
         protected global::System.Web.UI.WebControls.Label errMsg;
         
         /// <summary>
-        /// txtStudentUSn control.
+        /// txtStudentUSN control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtStudentUSn;
+        protected global::System.Web.UI.WebControls.TextBox txtStudentUSN;
         
         /// <summary>
         /// txtStudentName control.
@@ -146,5 +146,32 @@ namespace GoCollegeWebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button studentbtnSubmit;
+        
+        /// <summary>
+        /// hfStudentID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfStudentID;
+        
+        /// <summary>
+        /// hfCoueseID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfCoueseID;
+        
+        /// <summary>
+        /// hfSemID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfSemID;
     }
 }

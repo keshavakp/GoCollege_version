@@ -15,13 +15,20 @@ namespace GoCollegeWebApp
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["AdminUserName"] == null)
+            if (Session["UserName"] == null)
             {
                 Response.Redirect("AdminLogin.aspx");
             }
             else
             {
-                BindCourse();
+                if (Session["UserType"] == "A")
+                {
+                    BindCourse();
+                }
+                else
+                {
+                    Response.Redirect("~/AdminLogin.aspx");
+                }
             }
 
         }
@@ -124,7 +131,7 @@ namespace GoCollegeWebApp
             divDataGrid.Visible = true;
 
             DataView dv = new DataView();
-            dv = objAdmin.FetchAllCourse(Convert.ToInt64(Session["AdminID"].ToString()));
+            dv = objAdmin.FetchAllCourse(Convert.ToInt64(Session["UserID"].ToString()));
 
             if (dv.Count > 0)
             {

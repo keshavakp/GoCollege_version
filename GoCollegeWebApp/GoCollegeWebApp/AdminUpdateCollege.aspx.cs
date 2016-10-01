@@ -20,13 +20,21 @@ namespace GoCollegeWebApp
             {
                 try
                 {
-                    if (Session["AdminID"] == null || Session["AdminUserName"] == null ) //|| Session["AdminLogin"] == null || Session["UserType"] == null)
+                    if (Session["UserID"] == null || Session["UserName"] == null ) //|| Session["AdminLogin"] == null || Session["UserType"] == null)
                     {
                         Response.Redirect("~/AdminLogin.aspx");
                     }
                     else
                     {
-                        BindCollgeCode();
+                        if (Session["UserType"] == "A")
+                        {
+                            BindCollgeCode();
+
+                        }
+                        else
+                        {
+                            Response.Redirect("~/AdminLogin.aspx");
+                        }
                       //  ResetAll();
                     }
                 }
@@ -42,17 +50,17 @@ namespace GoCollegeWebApp
         public void BindCollgeCode()
         {
            
-                if (Session["AdminUserName"] == null || Session["AdminID"] == null)
+                if (Session["UserName"] == null || Session["UserID"] == null)
                 {
                     Response.Redirect("AdminLogin.aspx");
                 }
 
-                string adminUserName = Session["AdminUserName"].ToString();
+                string adminUserName = Session["UserName"].ToString();
 
                 txtCollgeCode.ReadOnly = true;
 
                 DataView dv = new DataView();
-                dv=objadminBL.FetchCollgeDetails( Convert.ToInt64(Session["AdminID"].ToString()), Session["AdminUserName"].ToString());
+                dv=objadminBL.FetchCollgeDetails( Convert.ToInt64(Session["UserID"].ToString()), Session["UserName"].ToString());
 
                  if(!dv.Count.Equals(0))
                  {                                     

@@ -15,7 +15,7 @@ namespace GoCollegeWebApp
             {
                 try
                 {
-                    if (Session["AdminUserName"] == null || Session["AdminLogin"] == null || Session["UserType"] == null)
+                    if (Session["UserName"] == null || Session["UserID"] == null || Session["UserType"] == null)
                     {
                         Response.Redirect("~/AdminLogin.aspx");
                     }

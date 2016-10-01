@@ -20,13 +20,21 @@ namespace GoCollegeWebApp
             {
                 try
                 {
-                    if (Session["AdminUserName"] == null || Session["AdminLogin"] == null || Session["UserType"] == null)
+                    if (Session["UserName"] == null || Session["UserID"] == null || Session["UserType"] == null )
                     {
                         Response.Redirect("~/AdminLogin.aspx");
                     }
                     else
                     {
-                        ResetAll();
+                        if (Session["UserType"].ToString() == "A")
+                        {
+                            ResetAll();
+                        }
+                        else
+                        {
+                            Response.Redirect("~/AdminLogin.aspx");
+                        }
+
                     }
                 }
                 catch(Exception ex)
@@ -45,9 +53,7 @@ namespace GoCollegeWebApp
                 {
                     Response.Redirect("AdminLogin.aspx");
                 }
-
-
-
+                
                 string adminUserName = Session["AdminUserName"].ToString();      
                 string adminUN = Session["AdminUserName"].ToString();
                 string adminNAME = adminName.Text.ToString(); 

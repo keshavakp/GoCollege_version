@@ -16,12 +16,12 @@ E:\KESHU\Personal\MyCampuz\WebApp\GoCollegeWebApp\GoCollege_BL\bin\Debug\GoColle
 E:\KESHU\Personal\MyCampuz\WebApp\GoCollegeWebApp\GoCollege_BL\obj\Debug\GoCollege_BusinessLayer.csprojResolveAssemblyReference.cache
 E:\KESHU\Personal\MyCampuz\WebApp\GoCollegeWebApp\GoCollege_BL\obj\Debug\GoCollege_BL.dll
 E:\KESHU\Personal\MyCampuz\WebApp\GoCollegeWebApp\GoCollege_BL\obj\Debug\GoCollege_BL.pdb
+F:\1Private\GoCollege\GoCollege_Web\GoCollegeWebApp\GoCollege_BL\obj\Debug\GoCollege_BusinessLayer.csprojResolveAssemblyReference.cache
 F:\1Private\GoCollege\GoCollege_Web\GoCollegeWebApp\GoCollege_BL\bin\Debug\GoCollege_BL.dll
 F:\1Private\GoCollege\GoCollege_Web\GoCollegeWebApp\GoCollege_BL\bin\Debug\GoCollege_BL.pdb
 F:\1Private\GoCollege\GoCollege_Web\GoCollegeWebApp\GoCollege_BL\bin\Debug\GoCollege_CL.dll
 F:\1Private\GoCollege\GoCollege_Web\GoCollegeWebApp\GoCollege_BL\bin\Debug\GoCollege_DL.dll
 F:\1Private\GoCollege\GoCollege_Web\GoCollegeWebApp\GoCollege_BL\bin\Debug\GoCollege_CL.pdb
 F:\1Private\GoCollege\GoCollege_Web\GoCollegeWebApp\GoCollege_BL\bin\Debug\GoCollege_DL.pdb
-F:\1Private\GoCollege\GoCollege_Web\GoCollegeWebApp\GoCollege_BL\obj\Debug\GoCollege_BusinessLayer.csprojResolveAssemblyReference.cache
 F:\1Private\GoCollege\GoCollege_Web\GoCollegeWebApp\GoCollege_BL\obj\Debug\GoCollege_BL.dll
 F:\1Private\GoCollege\GoCollege_Web\GoCollegeWebApp\GoCollege_BL\obj\Debug\GoCollege_BL.pdb

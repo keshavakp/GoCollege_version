@@ -167,13 +167,89 @@ namespace GoCollege_DL
             return isUpdated;
         }
 
-        public int EditStudent(SqlConnection con, SqlTransaction trans, string studentUserName, string studentName, long collegeID, long courseID, string studentEmail, long studentMobile, string studentAddress, long semID, string studentPassword)
+        //Update Student
+        public int EditUpdateStudent(SqlConnection con, SqlTransaction trans, long studentID, long collegeID, string studentUSN, string studentName, string studentEmail, long studentMobile, string studentAddress, long courseID, long semID, string studentPassword, string studentStatus)
         {
+            int isUpdated = 0;
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
 
-            return 0;
+            try
+            {
+                qry = "UPDATE tblStudent SET StudentName=@StudentName, StudentEmail = @StudentEmail, StudentMobile = @StudentMobile, StudentPassword=@StudentPassword where StudentID = @StudentID and StudentUSN = @StudentUSN and CollegeID=@CollegeID";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+                SqlParameter param;
+
+                // parameter for UserName column
+
+                param = new SqlParameter("@CollegeID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = collegeID;
+                cmd.Parameters.Add(param);
+
+
+                param = new SqlParameter("@StudentName", SqlDbType.VarChar, 150);
+                param.Direction = ParameterDirection.Input;
+                param.Value = studentName;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@StudentEmail", SqlDbType.VarChar, 250);
+                param.Direction = ParameterDirection.Input;
+                param.Value = studentEmail;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@StudentMobile", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = studentMobile;
+                cmd.Parameters.Add(param);
+
+
+                param = new SqlParameter("@StudentAddress", SqlDbType.VarChar, 250);
+                param.Direction = ParameterDirection.Input;
+                param.Value = studentAddress;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@StudentID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = studentID;
+                cmd.Parameters.Add(param);
+
+
+                param = new SqlParameter("@CourseID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = courseID;
+                cmd.Parameters.Add(param);
+                
+                param = new SqlParameter("@StudentID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = studentID;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@AdminUserName", SqlDbType.VarChar, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = studentUSN;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@StudentStatus", SqlDbType.Char, 1);
+                param.Direction = ParameterDirection.Input;
+                param.Value = studentStatus;
+                cmd.Parameters.Add(param);
+
+
+                isUpdated = cmd.ExecuteNonQuery();
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+
+            return isUpdated;
         }
 
-        public int DeleteStudent(SqlConnection con, SqlTransaction trans, string studentUserName, string CollegeID)
+        public int DeleteStudent(SqlConnection con, SqlTransaction trans,long studentID, string studentUserName, string CollegeID)
         {
             DataSet MyDataSet = new DataSet();
             SqlCommand cmd = null;
@@ -182,7 +258,7 @@ namespace GoCollege_DL
 
             try
             {
-                qry = "DELETE FROM tblStudent where StudentUSN=@StudentUserName and CollegeID = @CollegeID";
+                qry = "update tblStudent Set StudentStatus='D' where StudentID=@StudentID and CollegeID = @CollegeID";
                 cmd = new SqlCommand(qry, con, trans);
                 cmd.CommandType = CommandType.Text;
                 SqlParameter param;
@@ -197,6 +273,12 @@ namespace GoCollege_DL
                 param.Direction = ParameterDirection.Input;
                 param.Value = CollegeID;
                 cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@CollegeID", SqlDbType.BigInt, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = CollegeID;
+                cmd.Parameters.Add(param);
+
 
                 //MyDataAdapter = new SqlDataAdapter(cmd);
                 isStudentDeleted = cmd.ExecuteNonQuery();
@@ -276,6 +358,51 @@ namespace GoCollege_DL
             }
             return MyDataSet.Tables[0].DefaultView;
  
+        }
+
+        public DataView FetchForExistingStudentContactDetails(SqlConnection con, SqlTransaction trans, long studentID, long collegeID,long studentMobile,string studentEmail)
+        {
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            try
+            {
+                qry = "Select * from tblStudent where StudentMobile =@StudentMobile or StudentEmail = @StudentEmail   ";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+                SqlParameter param;
+
+                param = new SqlParameter("@CollegeID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = collegeID;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@StudentID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = studentID;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@StudentMobile", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = studentMobile;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@StudentEmail", SqlDbType.VarChar, 250);
+                param.Direction = ParameterDirection.Input;
+                param.Value = studentEmail;
+                cmd.Parameters.Add(param);
+
+                MyDataAdapter = new SqlDataAdapter(cmd);
+                MyDataAdapter.Fill(MyDataSet);
+
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+            return MyDataSet.Tables[0].DefaultView;
         }
     }
 }
