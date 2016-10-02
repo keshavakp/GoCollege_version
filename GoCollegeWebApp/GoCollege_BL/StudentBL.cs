@@ -88,42 +88,16 @@ namespace GoCollege_BL
 
             try
             {
-                conn.BeginTransaction();
-                //checkfor duplication
+                conn.BeginTransaction();         
 
-                isStudentUpdated = objStudentBL.EditUpdateStudent(conn.con, conn.trans,studentID,collegeID,  studentUSN, studentName, studentEmail,studentMobile,studentAddress, courseID, semID,studentPassword, studentStatus);
+                isStudentUpdated = objStudentBL.EditUpdateStudent(conn.con, conn.trans,studentID,collegeID,  studentUSN, studentName, studentEmail,studentMobile,studentAddress, courseID, semID, objPasswordBL.GenerateHash(studentPassword), studentStatus);
+                
+                if (isStudentUpdated == 0)
+                {
+                    conn.RollbackTransaction();
+                }
 
-       
-                //public int EditUpdateStudent(SqlConnection con, SqlTransaction trans, long studentID, long collegeID, string studentUSN, string studentName, string studentEmail, long studentMobile, string studentAddress, long courseID, long semID, string studentPassword, string studentStatus)
-
-
-               // dvMsg = objStudentBL.FetchStudentForDuplicationCheck(conn.con, conn.trans, studentUSN, studentName, collegeID, courseID, studentEmail, studentMobile);
-
-
-                //if (flag.Equals("AdminAdd"))
-                //{
-                //    if (!dvMsg.Count.Equals(0))
-                //    {
-                //        return dvMsg.Table.DefaultView;
-                //    }
-                //    else
-                //    {
-                //        conn.CommitTransaction();
-                //        //int isStudentAddedStudentTable = objStudentBL.AddStudent(studentUSN, studentName, collegeID, studentMobile, studentAddress, courseID, semID, objPasswordBL.GenerateHash(adminNewPassword), flag);
-                //    }
-                //}
-                //else if (flag.Equals("AdminEdit"))
-                //{
-
-
-                //}
-                //else if (flag.Equals("AdminDelete"))
-                //{
-
-                //}
-
-
-
+                conn.CommitTransaction();
                 return isStudentUpdated;
             }
             catch (NullReferenceException ex)

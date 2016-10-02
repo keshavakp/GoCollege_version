@@ -17,34 +17,40 @@
 
     <br />
 
+    <div class="text-left">
+        <asp:Label ID="errMsg" CssClass="errMsg" Text="" runat="server"> </asp:Label>
+    </div>
 
     <div class="row">
 
         <div class="col-md-12 form-group1 ">
             <label class="control-label">Name</label>
-            <asp:TextBox ID="collegeName" runat="server" placeholder="Firstname" required=""></asp:TextBox>
+            <asp:TextBox ID="collegeName" runat="server" placeholder="College Name" required=""></asp:TextBox>
         </div>
 
         <div class="col-md-12 form-group1 ">
             <label class="control-label">Email</label>
             <asp:TextBox ID="collgeEmail" runat="server" placeholder="College Email Address" required=""></asp:TextBox>
+
         </div>
 
         <div class="col-md-12 form-group1 ">
             <label class="control-label">Phone Number</label>
-            <asp:TextBox ID="collegePhone" runat="server" placeholder="Phone Number" required=""></asp:TextBox>
+            <asp:TextBox ID="collegePhone" runat="server" placeholder="Phone Number" MaxLength="10" required=""></asp:TextBox>
         </div>
 
 
         <div class="col-md-12 form-group1 ">
             <label class="control-label">Mobile Number</label>
-            <asp:TextBox ID="collegeMobile" runat="server" placeholder="Mobile Number" required=""></asp:TextBox>
+            <asp:TextBox ID="collegeMobile" runat="server" placeholder="Mobile Number" MaxLength="10" required=""></asp:TextBox>
         </div>
 
         <div class="col-md-12 form-group1 ">
             <label class="control-label">Address</label>
             <asp:TextBox ID="collegeAddress" TextMode="MultiLine" runat="server" placeholder="Full Address" required=""></asp:TextBox>
         </div>
+        <br />
+        <br />
 
         <div class="col-md-12 form-group ">
             <asp:Button ID="collegebtnSubmit" runat="server" Text="Submit" class="btn btn-primary" OnClick="collegebtnSubmit_Click" />

@@ -216,20 +216,26 @@ namespace GoCollege_DL
                 param.Value = studentID;
                 cmd.Parameters.Add(param);
 
+                param = new SqlParameter("@StudentUSN", SqlDbType.VarChar,50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = studentUSN;
+                cmd.Parameters.Add(param);
+
+
 
                 param = new SqlParameter("@CourseID", SqlDbType.BigInt);
                 param.Direction = ParameterDirection.Input;
                 param.Value = courseID;
                 cmd.Parameters.Add(param);
                 
-                param = new SqlParameter("@StudentID", SqlDbType.BigInt);
+                param = new SqlParameter("@SemID", SqlDbType.BigInt);
                 param.Direction = ParameterDirection.Input;
                 param.Value = studentID;
                 cmd.Parameters.Add(param);
 
-                param = new SqlParameter("@AdminUserName", SqlDbType.VarChar, 50);
+                param = new SqlParameter("@StudentPassword", SqlDbType.VarChar, 250);
                 param.Direction = ParameterDirection.Input;
-                param.Value = studentUSN;
+                param.Value =  studentPassword;
                 cmd.Parameters.Add(param);
 
                 param = new SqlParameter("@StudentStatus", SqlDbType.Char, 1);

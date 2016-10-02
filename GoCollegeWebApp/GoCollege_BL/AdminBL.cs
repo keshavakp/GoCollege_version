@@ -234,6 +234,44 @@ namespace GoCollege_BL
         }
 
 
+
+        //Fetch Collge Details Edit College Details
+        public DataView FetchForExistingClgDetails_EditCollegeUpdate(long collegeID)
+        {
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+            try
+            {
+                conn.BeginTransaction();
+
+                dvMsg = objAdmiDL.FetchForExistingClgDetails_EditCollege(conn.con, conn.trans,collegeID);
+
+                if (dvMsg.Count.Equals(0))
+                {
+                    conn.RollbackTransaction();
+
+                    return dvMsg.Table.DefaultView;
+
+                }
+
+                conn.CommitTransaction();
+
+                return dvMsg.Table.DefaultView;
+
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dvMsg.Table.DefaultView;
+
+        }
+
+
         //Fetch Collge Details
         public DataView FetchCollgeDetails(Int64 adminID, string adminUN)
         {
@@ -311,6 +349,51 @@ namespace GoCollege_BL
 
             
         }
+
+        //
+
+        //Update College Details Edit Update
+        public int UpdateCollegeDetails_EditUpdate(long collegeID, string clgName, string clgEmail, Int64 clgPhone, Int64 clgMobile, string clgAddress)
+        {
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+            try
+            {
+                conn.BeginTransaction();
+
+
+                int qryResult = 0;
+
+                qryResult = objAdmiDL.UpdateCollegeDetails_EditUpdate(conn.con, conn.trans, collegeID, clgName, clgEmail, clgPhone, clgMobile, clgAddress);
+
+                //dvMsg = objAdmiDL.FetchAdminDetails(conn.con, conn.trans, adminUN, adminPWD);
+
+                if (qryResult == 0)
+                {
+                    conn.RollbackTransaction();
+                    return qryResult;
+
+                }
+
+                conn.CommitTransaction();
+
+                return 1;
+
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            //  return dvMsg.Table.DefaultView;
+            return 0;
+
+
+        }
+
 
       
 
@@ -547,6 +630,76 @@ namespace GoCollege_BL
 
  
         }
+
+
+
+        //Send Notification
+
+        public DataView FetchTypeOfUserForNotification()
+        {
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+            try
+            {
+                conn.BeginTransaction();
+
+                dvMsg = objAdmiDL.FetchTypeOfUserForNotification(conn.con, conn.trans);
+
+                if (dvMsg.Count.Equals(0))
+                {
+                    return dvMsg.Table.DefaultView;
+                }
+                conn.CommitTransaction();
+                return dvMsg.Table.DefaultView;
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dvMsg.Table.DefaultView;
+
+        }
+
+        public int SendNotification(string notificationSubject, string notificationContent, DateTime notificationDateTime, long notificationTypeOfUser)
+        {
+            DataView dvMsg = null;
+            int isInserted = 0;
+            Connection conn = new Connection();
+
+            try
+            {
+                conn.BeginTransaction();
+
+                isInserted = objAdmiDL.SendNotification(conn.con, conn.trans, notificationSubject, notificationContent, notificationDateTime, notificationTypeOfUser);
+
+                if (isInserted != 1)
+                {
+                    return isInserted;
+                }
+                conn.CommitTransaction();
+                return isInserted;
+
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return isInserted;
+        }
+
+
+
+
+        //End
+
     }
 
 }

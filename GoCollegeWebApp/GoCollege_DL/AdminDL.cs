@@ -390,6 +390,124 @@ namespace GoCollege_DL
         }
 
 
+
+        //Check for Existing Email.Mobile Number and Phone Number from Clg Table //Edit College Details
+        public DataView FetchForExistingClgDetails_EditCollege(SqlConnection con, SqlTransaction trans , long collegeID)
+        {
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            try
+            {
+                qry = "Select * from tblCollege where CollegeID not in(@CollegeID)";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+
+                SqlParameter param;
+
+                // parameter for UserName column
+                param = new SqlParameter("@CollegeID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = collegeID;
+                cmd.Parameters.Add(param);
+
+
+
+                MyDataAdapter = new SqlDataAdapter(cmd);
+                MyDataAdapter.Fill(MyDataSet);
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+
+            return MyDataSet.Tables[0].DefaultView;
+
+        }
+
+        //Update College Details for First Time
+        public int UpdateCollegeDetails_EditUpdate(SqlConnection con, SqlTransaction trans, long clgID, string clgName, string clgEmail, Int64 clgPhone, Int64 clgMobile, string clgAddress)
+        {
+
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            try
+            {
+
+                qry = " Update tblCollege set CollegeName=@CollegeName,CollegeEmail=@CollegeEmail,CollegePhone=@CollegePhone,CollegeMobile=@CollegeMobile,CollegeAddress=@CollegeAddress,CollegeStatus=@CollegeStatus where CollegeID=@CollegeID";
+
+
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+                SqlParameter param;
+
+                // parameter for College Code
+                param = new SqlParameter("@CollegeID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = clgID;
+                cmd.Parameters.Add(param);
+
+                // parameter for College Name column
+                param = new SqlParameter("@CollegeName", SqlDbType.VarChar, 250);
+                param.Direction = ParameterDirection.Input;
+                param.Value = clgName;
+                cmd.Parameters.Add(param);
+
+                // parameter for COllege Email column
+                param = new SqlParameter("@CollegeEmail", SqlDbType.VarChar, 250);
+                param.Direction = ParameterDirection.Input;
+                param.Value = clgEmail;
+                cmd.Parameters.Add(param);
+
+                // parameter for College Phone column
+                param = new SqlParameter("@CollegePhone", SqlDbType.BigInt, 10);
+                param.Direction = ParameterDirection.Input;
+                param.Value = clgPhone;
+                cmd.Parameters.Add(param);
+
+
+                // parameter for College Mobile column
+                param = new SqlParameter("@CollegeMobile", SqlDbType.BigInt, 10);
+                param.Direction = ParameterDirection.Input;
+                param.Value = clgMobile;
+                cmd.Parameters.Add(param);
+
+
+
+                // parameter for College Mobile column
+                param = new SqlParameter("@CollegeAddress", SqlDbType.VarChar, 250);
+                param.Direction = ParameterDirection.Input;
+                param.Value = clgAddress;
+                cmd.Parameters.Add(param);
+
+
+                // parameter for College Status column
+                param = new SqlParameter("@CollegeStatus", SqlDbType.Char, 1);
+                param.Direction = ParameterDirection.Input;
+                param.Value = 'A';
+                cmd.Parameters.Add(param);
+
+                int retValue = 0;
+
+                retValue = cmd.ExecuteNonQuery();
+                return retValue;
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+            return 0;
+
+        }
+       
+
+
+
         //Check for Existing Email.Mobile Number and Phone Number from Clg Table
         public DataView FetchForExistingClgDetails(SqlConnection con,SqlTransaction trans)
         {
@@ -798,6 +916,81 @@ namespace GoCollege_DL
             return MyDataSet.Tables[0].DefaultView; ;
  
         }
+
+
+        //Send Notification
+        public DataView FetchTypeOfUserForNotification(SqlConnection con, SqlTransaction trans)
+        {
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            try
+            {
+                qry = "Select * from tblTypeOfUser";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+
+                MyDataAdapter = new SqlDataAdapter(cmd);
+                MyDataAdapter.Fill(MyDataSet);
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+
+            return MyDataSet.Tables[0].DefaultView;
+        }
+
+        public int SendNotification(SqlConnection con, SqlTransaction trans, string notificationSubject, string notificationContent, DateTime notificationDateTime, long notificationTypeOfUser)
+        {
+            int isInserted = 0;
+            SqlCommand cmd = null;
+            string qry = "";
+
+            try
+            {
+                qry = "insert into tblNotification (NotificationSubject, NotificationContent, NotificationDateTime, NotificationToTypeOfUser, NotificationStatus) values (@NotificationSubject, @NotificationContent, @NotificationDateTime, @NotificationTypeOfUser, 'I')";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+                SqlParameter param;
+
+                // parameter for UserName column
+                param = new SqlParameter("@NotificationSubject", SqlDbType.VarChar, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = notificationSubject;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@NotificationContent", SqlDbType.VarChar, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = notificationContent;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@NotificationDateTime", SqlDbType.DateTime, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = notificationDateTime;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@NotificationTypeOfUser", SqlDbType.BigInt, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = notificationTypeOfUser;
+                cmd.Parameters.Add(param);
+
+                isInserted = cmd.ExecuteNonQuery();
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+            return isInserted;
+        }
+
+
+
+
+        //End
 
     }
 }

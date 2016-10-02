@@ -43,13 +43,12 @@ namespace GoCollegeWebApp
                dv = objadminBL.AdminLogin(adminUserName.Text.ToString(), adminPassword.Text.ToString());
 
                dv.Table.Columns.Contains("AdminID");
-              
+            
         
                if (!dv.Count.Equals(0))
                {
                    if (dv.Table.Columns.Contains("StudentID"))
                    {
-
                        if (dv[0]["StudentStatus"].ToString().Equals("R"))
                        {
                            //Set Admin Sessions
@@ -71,10 +70,10 @@ namespace GoCollegeWebApp
                            // Session["AdminLogin"] = "true";
                            Session["UserType"] = "S";
                            Response.Redirect("~/StudentHome.aspx");
-
                        }
  
                    }
+
                    else if (dv.Table.Columns.Contains("AdminID"))
                    {
 

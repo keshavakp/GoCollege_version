@@ -196,16 +196,14 @@
         <div class="col-md-12 form-group1 ">
             <label class="control-label">Student Mobile</label>
             <asp:TextBox ID="txteditStudentMobile" runat="server" placeholder="Student Mobile" required="" CssClass="form-control"></asp:TextBox>
-            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Enter Valid Mobile Number" ControlToValidate="txteditStudentName" Font-Size="Smaller" ForeColor="Red" ValidationExpression="[A-za-z]+[]*[A-Za-z]*[]*[A-Za-z]*[]*[A-Za-z]*[]*[A-Za-z]*"></asp:RegularExpressionValidator>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Enter Valid Mobile Number" ControlToValidate="txteditStudentMobile" Font-Size="Smaller" ForeColor="Red" ValidationExpression="[0-9]{10}"></asp:RegularExpressionValidator>
         </div>
         <div class="clearfix"></div>
-
-
 
         <div class="col-md-12 form-group1 ">
             <label class="control-label">Student Email</label>
             <asp:TextBox ID="txteditStudentEmail" runat="server" placeholder="Student Mobile" required="" CssClass="form-control"></asp:TextBox>
-            <asp:RegularExpressionValidator ID="RegExpStudentEmail" runat="server" ErrorMessage="Enter Valid Email Address" ControlToValidate="txteditStudentName" Font-Size="Smaller" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+            <asp:RegularExpressionValidator ID="RegExpStudentEmail" runat="server" ErrorMessage="Enter Valid Email Address" ControlToValidate="txteditStudentEmail" Font-Size="Smaller" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
         </div>
 
 
