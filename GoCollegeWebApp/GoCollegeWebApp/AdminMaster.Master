@@ -166,7 +166,7 @@
                                     <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-cog nav_icon"></i><span class="nav-label">Manage Academics</span><span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
                                         <li><a href="CourseDetails.aspx" class=" hvr-bounce-to-right"><i class="fa fa-info-circle nav_icon"></i>Course Details</a></li>
-                                        <li><a href="faq.html" class=" hvr-bounce-to-right"><i class="fa fa-file-text  nav_icon"></i>Semester Details</a></li>
+                                        <li><a href="SemesterManagement.aspx" class=" hvr-bounce-to-right"><i class="fa fa-file-text  nav_icon"></i>Semester Details</a></li>
                                         <li><a href="blank.html" class=" hvr-bounce-to-right"><i class="fa fa-book nav_icon"></i>Subject Details</a></li>
                                     </ul>
                                 </li>

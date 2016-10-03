@@ -158,6 +158,7 @@
     <Content Include="js\site.js" />
     <Content Include="js\skycons.js" />
     <Content Include="js\underscore-min.js" />
+    <Content Include="SemesterManagement.aspx" />
     <Content Include="SendNotification.aspx" />
     <Content Include="StudentDetails.aspx" />
     <Content Include="StudentHome.aspx" />
@@ -239,6 +240,13 @@
       <DependentUpon>FacultyHome.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SemesterManagement.aspx.cs">
+      <DependentUpon>SemesterManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SemesterManagement.aspx.designer.cs">
+      <DependentUpon>SemesterManagement.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SendNotification.aspx.cs">
       <DependentUpon>SendNotification.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

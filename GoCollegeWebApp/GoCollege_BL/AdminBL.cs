@@ -631,6 +631,72 @@ namespace GoCollege_BL
  
         }
 
+        public int AddNewSemester(Int16 semNumber, long courseID, long totalSubjects)
+        {
+            DataView dvMsg = null;
+            int isinserted = 0;
+            Connection conn = new Connection();
+
+            try
+            {
+                conn.BeginTransaction();
+                isinserted = objAdmiDL.AddNewSemester(conn.con, conn.trans, semNumber, courseID, totalSubjects);
+
+                if (isinserted == 0)
+                {
+                    conn.RollbackTransaction();
+                    return isinserted;
+                }
+                conn.CommitTransaction();
+                return isinserted;
+
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return isinserted;
+        }
+
+
+        //Fetch All Sem For Grid
+        public DataView FetchAllSemesterForGrid(long collegeiD)
+        {
+
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+            try
+            {
+                conn.BeginTransaction();
+
+                dvMsg = objAdmiDL.FetchAllSemesterForGrid(conn.con, conn.trans, collegeiD);
+
+                if (dvMsg.Count.Equals(0))
+                {
+                    conn.RollbackTransaction();
+                    return dvMsg.Table.DefaultView;
+
+                }
+
+                conn.CommitTransaction();
+
+                return dvMsg.Table.DefaultView;
+
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dvMsg.Table.DefaultView;
+
+        }
+
 
 
         //Send Notification
@@ -694,10 +760,6 @@ namespace GoCollege_BL
             }
             return isInserted;
         }
-
-
-
-
         //End
 
     }

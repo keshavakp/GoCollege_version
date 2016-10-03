@@ -14,7 +14,7 @@ namespace GoCollege_BL
         FacultyDL objFacultyDL = new FacultyDL();
         PasswordBL objPasswordBL = new PasswordBL();
 
-
+        //
         public DataView FetchAllFacultyForGrid(long adminID)
         {
             DataView dvMsg = null;
@@ -48,6 +48,57 @@ namespace GoCollege_BL
             }
             return dvMsg.Table.DefaultView;
 
+        }
+        
+
+        //Add new 
+        public int AddFaculty(string facultyCode,string facultyPassword, long colegeID)
+        {
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+            int qryresult = 0;
+
+            try
+            {
+                conn.BeginTransaction();
+
+                dvMsg = objFacultyDL.FetchForExistingFacultyCode(conn.con, conn.trans,facultyCode,  colegeID);
+                            
+
+                //Check
+                if (!dvMsg.Count.Equals(0))
+                {
+                    conn.CommitTransaction();
+                    qryresult = -1;
+                    return qryresult;
+
+                }
+                else
+                {
+                    qryresult = objFacultyDL.AddNewFaculty(conn.con, conn.trans, facultyCode, objPasswordBL.GenerateHash(facultyPassword), colegeID);
+
+                    if (qryresult == 0)
+                    {
+                        conn.RollbackTransaction();
+                        return qryresult;
+                    }
+
+                }
+
+                conn.CommitTransaction();
+                return qryresult;
+
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return qryresult;
         }
     }
 }

@@ -10,7 +10,7 @@
 namespace GoCollegeWebApp {
     
     
-    public partial class AddFaculty {
+    public partial class SemesterManagement {
         
         /// <summary>
         /// lnkbtnAdd control.
@@ -40,24 +40,6 @@ namespace GoCollegeWebApp {
         protected global::System.Web.UI.WebControls.Label errMsg;
         
         /// <summary>
-        /// divDataGrid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDataGrid;
-        
-        /// <summary>
-        /// dgFacultyDetails control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataGrid dgFacultyDetails;
-        
-        /// <summary>
         /// divAdd control.
         /// </summary>
         /// <remarks>
@@ -67,39 +49,39 @@ namespace GoCollegeWebApp {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAdd;
         
         /// <summary>
-        /// txtFacultyCode control.
+        /// txtsemeNum control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFacultyCode;
+        protected global::System.Web.UI.WebControls.TextBox txtsemeNum;
         
         /// <summary>
-        /// txtFacultyPassword control.
+        /// ddlCourse control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFacultyPassword;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCourse;
         
         /// <summary>
-        /// btnFacultyAdd control.
+        /// txtsemTotalSubjects control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnFacultyAdd;
+        protected global::System.Web.UI.WebControls.TextBox txtsemTotalSubjects;
         
         /// <summary>
-        /// divEdit control.
+        /// btnSemesterAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEdit;
+        protected global::System.Web.UI.WebControls.Button btnSemesterAdd;
     }
 }

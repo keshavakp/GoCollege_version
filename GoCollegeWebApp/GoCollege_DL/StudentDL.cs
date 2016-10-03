@@ -156,6 +156,7 @@ namespace GoCollege_DL
                 cmd.Parameters.Add(param);
 
                 MyDataAdapter = new SqlDataAdapter(cmd);
+
                 isUpdated = cmd.ExecuteNonQuery();
             }
 

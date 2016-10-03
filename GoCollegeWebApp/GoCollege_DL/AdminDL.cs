@@ -918,6 +918,89 @@ namespace GoCollege_DL
         }
 
 
+        //Add NEw Semester
+        public int  AddNewSemester(SqlConnection con, SqlTransaction  trans,Int16 semNumber,long courseID, long totalSubjects)
+        {
+
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            int result = 0;
+            try
+            {
+
+                qry = " insert into tblSemester (SemNumber,CourseID,SemTotalSubjects) values(@SemNumber, @CourseID,@SemTotalSubjects)";
+
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+                SqlParameter param;
+
+                param = new SqlParameter("@SemNumber", SqlDbType.Int);
+                param.Direction = ParameterDirection.Input;
+                param.Value = semNumber;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@CourseID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = courseID;
+                cmd.Parameters.Add(param);
+
+
+                param = new SqlParameter("@SemTotalSubjects", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = totalSubjects;
+                cmd.Parameters.Add(param);
+
+                result = cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            if (result == 0)
+            {
+                return result;
+            }
+
+
+            return result;
+        }
+
+        //Fetch All Sems for Grid 
+        public DataView FetchAllSemesterForGrid(SqlConnection con,SqlTransaction trans,long collegeID)
+        {
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            try
+            {
+                qry = "Select * from tblSemester where CourseID in(select CourseID from tblCourse where CollegeID=@CollegeID)";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+
+                SqlParameter param;
+
+                // parameter for UserName column
+                param = new SqlParameter("@CollegeID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = collegeID;
+                cmd.Parameters.Add(param);
+
+                MyDataAdapter = new SqlDataAdapter(cmd);
+                MyDataAdapter.Fill(MyDataSet);
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+
+            return MyDataSet.Tables[0].DefaultView;
+        }
+
         //Send Notification
         public DataView FetchTypeOfUserForNotification(SqlConnection con, SqlTransaction trans)
         {
