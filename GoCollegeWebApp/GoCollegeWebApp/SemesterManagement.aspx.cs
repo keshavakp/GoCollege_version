@@ -25,7 +25,7 @@ namespace GoCollegeWebApp
                 }
                 else
                 {
-
+                    BindSemester();
                 }
             }
 
@@ -36,13 +36,20 @@ namespace GoCollegeWebApp
             if (Session["CollegeID"] == null)
             {
                 Response.Redirect("AdminLogin.aspx");
-
             }
             else
             {
+                divAdd.Visible = false;
+                divDataGrid.Visible = true;
 
+
+                DataView dv = new DataView();
+                dv = objAdminBL.FetchAllSemesterForGrid(long.Parse(Session["CollegeID"].ToString()));
+                dgSemestereDetails.DataSource = dv;
+                dgSemestereDetails.DataBind();
             }
         }
+
 
         public void BindCourse()
         {
@@ -51,11 +58,9 @@ namespace GoCollegeWebApp
             dv = objAdminBL.FetchAllCourse(long.Parse(Session["UserID"].ToString()));
 
             ddlCourse.DataSource = dv;
-
             ddlCourse.DataTextField = "CourseName";
             ddlCourse.DataValueField = "CourseID";
             ddlCourse.DataBind();
-            //ddlstudentCourse.
             ddlCourse.Items.Insert(0, new ListItem(" Select ", "0"));
         }
 
@@ -65,14 +70,14 @@ namespace GoCollegeWebApp
             BindCourse();
            // BindSemester();
            // divEdit.Visible = false;
-            divAdd.Visible = true;
-           // divDataGrid.Visible = false;
+           divAdd.Visible = true;
+           divDataGrid.Visible = false;
 
         }
 
         //View All click
         protected void lnkViewAll(object sender, EventArgs e)
-        {
+        {           
             BindSemester();
            // ResetAll();
         }
@@ -100,5 +105,30 @@ namespace GoCollegeWebApp
             }
 
         }
+   
+        // Edit Command
+        protected void btnSemestertEdit_Command(object sender, CommandEventArgs e)
+        {
+
+        }
+
+        
+        // Delete Command
+        protected void btnSemesterDelete_Command(object sender, CommandEventArgs e)
+        {
+            int qry = 0;
+
+            qry = objAdminBL.DeleteSemester(long.Parse(e.CommandName.ToString()));
+
+            if (qry == 1)
+            {
+                errMsg.Text = "Semester Deleted Successfully";
+
+                BindSemester();
+            }
+
+        }
+
+        
     }
 }

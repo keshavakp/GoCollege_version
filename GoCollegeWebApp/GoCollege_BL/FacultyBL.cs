@@ -100,5 +100,41 @@ namespace GoCollege_BL
 
             return qryresult;
         }
+        
+        //Delete Faculty
+        public int DeleteFaculty(long facultyID)
+        {
+
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+            int qryresult = 0;
+
+            try
+            {
+                conn.BeginTransaction();
+
+                qryresult = objFacultyDL.DeleteFaculty(conn.con, conn.trans, facultyID);
+
+                if (qryresult == 0)
+                {
+                    conn.RollbackTransaction();
+                    return qryresult;
+                }
+         
+                conn.CommitTransaction();
+                return qryresult;
+
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return qryresult;
+        }
     }
 }

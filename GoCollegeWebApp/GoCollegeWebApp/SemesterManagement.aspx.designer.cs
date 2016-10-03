@@ -40,6 +40,24 @@ namespace GoCollegeWebApp {
         protected global::System.Web.UI.WebControls.Label errMsg;
         
         /// <summary>
+        /// divDataGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDataGrid;
+        
+        /// <summary>
+        /// dgSemestereDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataGrid dgSemestereDetails;
+        
+        /// <summary>
         /// divAdd control.
         /// </summary>
         /// <remarks>

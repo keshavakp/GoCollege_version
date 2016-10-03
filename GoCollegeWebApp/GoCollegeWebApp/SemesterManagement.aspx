@@ -24,7 +24,73 @@
     <div class="text-left">
         <asp:Label ID="errMsg" CssClass="errMsg" Text="" runat="server"> </asp:Label>
     </div>
+     <div id="divDataGrid" class="row text-center" style="" runat="server">
+        <asp:DataGrid Width="100%" BorderColor="White" ID="dgSemestereDetails" runat="server"
+            AutoGenerateColumns="False"
+            AllowSorting="True" UseAccessibleHeader="True" PagerStyle-Mode="NumericPages"
+            PagerStyle-Font-Bold="true" PagerStyle-CssClass="td_bd_1a">
+            <HeaderStyle CssClass="HeaderTextContent" />
+            <ItemStyle CssClass="MainTextContent" />
+            <AlternatingItemStyle CssClass="MainTextContent" />
+            <Columns>
+                <asp:TemplateColumn HeaderStyle-Wrap="false" HeaderStyle-ForeColor="black" HeaderText="Course" SortExpression="FCode" HeaderStyle-CssClass="HeaderTextContent" ItemStyle-CssClass="MainTextContent">
+                    <ItemTemplate>
+                        <asp:Label ID="lblCourseName" Text='<%#Eval("CourseName")%>' runat="server" CssClass="lblColor"></asp:Label>
+                        <asp:Label ID="lblCourseID" runat="server" Visible="false"></asp:Label>
+                    </ItemTemplate>
+                    <HeaderStyle Wrap="False" CssClass="HeaderTextContent" ForeColor="White"></HeaderStyle>
 
+                    <ItemStyle CssClass="MainTextContent"></ItemStyle>
+                </asp:TemplateColumn>
+                <asp:TemplateColumn HeaderText="Sem Number" HeaderStyle-ForeColor="White" SortExpression="FacultyName" HeaderStyle-CssClass="HeaderTextContent" ItemStyle-CssClass="MainTextContent" ItemStyle-HorizontalAlign="Center">
+                    <ItemTemplate>
+                        <asp:Label ID="lblSemNumber" Text='<%#Eval("SemNumber")%>' CssClass="lblColor" runat="server"></asp:Label>
+                    </ItemTemplate>
+
+                    <HeaderStyle CssClass="HeaderTextContent" ForeColor="White"></HeaderStyle>
+
+                    <ItemStyle HorizontalAlign="Center" CssClass="MainTextContent"></ItemStyle>
+                </asp:TemplateColumn>
+
+                <asp:TemplateColumn HeaderText="Total Subjects" HeaderStyle-ForeColor="White" SortExpression="" HeaderStyle-CssClass="HeaderTextContent" ItemStyle-CssClass="MainTextContent" ItemStyle-HorizontalAlign="Center">
+                    <ItemTemplate>
+                        <asp:Label ID="lblSemTotalSubjects" Text='<%#Eval("SemTotalSubjects")%>' CssClass="lblColor" runat="server"></asp:Label>
+                    </ItemTemplate>
+
+                    <HeaderStyle CssClass="HeaderTextContent" ForeColor="White"></HeaderStyle>
+                    <ItemStyle HorizontalAlign="Center" CssClass="MainTextContent"></ItemStyle>
+                </asp:TemplateColumn>
+
+             
+                <%-- Edit and Delete --%>
+                <asp:TemplateColumn HeaderText="Edit" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="HeaderTextContent" ItemStyle-CssClass="MainTextContent">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lnkbtnEdit" runat="server"
+                            CommandName='<%#DataBinder.Eval(Container.DataItem,"SemID")%>'
+                            OnCommand="btnSemestertEdit_Command" CausesValidation="false" class="lblColor">  <i class="fa fa-pencil-square-o"></i></asp:LinkButton>
+                    </ItemTemplate>
+                    <HeaderStyle CssClass="HeaderTextContent"></HeaderStyle>
+                    <ItemStyle HorizontalAlign="Center" CssClass="MainTextContent"></ItemStyle>
+                </asp:TemplateColumn>
+
+                <asp:TemplateColumn HeaderText="Edit" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="HeaderTextContent" ItemStyle-CssClass="MainTextContent">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lnkbtnDelete" runat="server"
+                            CommandName='<%#DataBinder.Eval(Container.DataItem,"SemID")%>'
+                            OnCommand="btnSemesterDelete_Command" CausesValidation="false" class="lblColor" OnClientClick="return confirm('Are you sure you want to delete this event?');">  <i class="fa fa-trash-o"></i></asp:LinkButton>
+                    </ItemTemplate>
+                    <HeaderStyle CssClass="HeaderTextContent"></HeaderStyle>
+                    <ItemStyle HorizontalAlign="Center" CssClass="MainTextContent"></ItemStyle>
+                </asp:TemplateColumn>
+            </Columns>
+
+            <PagerStyle Mode="NumericPages" CssClass="td_bd_1a" Font-Bold="True"></PagerStyle>
+
+            <SelectedItemStyle BackColor="Red" />
+        </asp:DataGrid>
+
+
+    </div>
 
     <div class="row" id="divAdd" runat="server">
 

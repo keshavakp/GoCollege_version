@@ -977,7 +977,7 @@ namespace GoCollege_DL
             string qry = "";
             try
             {
-                qry = "Select * from tblSemester where CourseID in(select CourseID from tblCourse where CollegeID=@CollegeID)";
+                qry = "Select  CourseName,TS.CourseID,SemID,SemNumber,SemTotalSubjects from tblSemester TS inner join tblCourse TC on TS.CourseID = TC.CourseID  and TC.CollegeID = @CollegeID Order by TS.CourseID";
                 cmd = new SqlCommand(qry, con, trans);
                 cmd.CommandType = CommandType.Text;
 
@@ -999,6 +999,44 @@ namespace GoCollege_DL
             }
 
             return MyDataSet.Tables[0].DefaultView;
+        }
+
+
+        //Delete Semester
+        public int DeleteSemester(SqlConnection con, SqlTransaction trans, long semID)
+        {
+
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+             string qry = "";
+             int qryresult = 0;
+            try
+            {
+                qry = " Delete from tblSemester Where SemID =@SemID ";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+
+                SqlParameter param;
+
+                // parameter for UserName column
+                param = new SqlParameter("@SemID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = semID;
+                cmd.Parameters.Add(param);
+
+                qryresult = cmd.ExecuteNonQuery();
+
+                //MyDataAdapter = new SqlDataAdapter(cmd);
+                //MyDataAdapter.Fill(MyDataSet);
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+
+            return qryresult;
         }
 
         //Send Notification
@@ -1069,11 +1107,157 @@ namespace GoCollege_DL
             }
             return isInserted;
         }
-
-
-
-
+        
         //End
+
+        //Fetch All Student Attendence
+        public DataView FetchAllStudentAttendence(SqlConnection con, SqlTransaction trans, DateTime fromDate, DateTime toDate, int year, long courseID, long sectionID, long subjectID)
+        {
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            try
+            {
+                qry = "select USN, SUM(IsAttended) from tblStudentAttendance where CourseID = @CourseID and SectionID = @SectionID and Year = @Year and SubjectID = @SubjectID and Date between @FromDate and @ToDate";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+                SqlParameter param;
+
+                param = new SqlParameter("@CourseID", SqlDbType.BigInt, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = courseID;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@SectionID", SqlDbType.BigInt, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = sectionID;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@Year", SqlDbType.Int, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = year;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@SubjectID", SqlDbType.BigInt, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = subjectID;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@FromDate", SqlDbType.DateTime, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = fromDate;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@ToDate", SqlDbType.DateTime, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = toDate;
+                cmd.Parameters.Add(param);
+
+                MyDataAdapter = new SqlDataAdapter(cmd);
+                MyDataAdapter.Fill(MyDataSet);
+            }
+            catch (SqlException SqlEx)
+            {
+
+            }
+            return MyDataSet.Tables[0].DefaultView;
+        }
+
+
+        //Fetch Particular  Student Attendence
+        public DataView FetchIndividualStudentAttendence(SqlConnection con, SqlTransaction trans, string USN, DateTime fromDate, DateTime toDate, int year, long courseID, long sectionID, long subjectID)
+        {
+            DataSet MyDataSet = new DataSet();
+            DataSet MyDataSet1 = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            try
+            {
+                qry = "select USN, SUM(IsAttended) from tblStudentAttendance where CourseID = @CourseID and SectionID = @SectionID and Year = @Year and SubjectID = @SubjectID and Date between @FromDate and @ToDate";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+                SqlParameter param;
+
+                param = new SqlParameter("@CourseID", SqlDbType.BigInt, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = courseID;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@SectionID", SqlDbType.BigInt, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = sectionID;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@Year", SqlDbType.Int, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = year;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@SubjectID", SqlDbType.BigInt, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = subjectID;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@FromDate", SqlDbType.DateTime, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = fromDate;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@ToDate", SqlDbType.DateTime, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = toDate;
+                cmd.Parameters.Add(param);
+
+                MyDataAdapter = new SqlDataAdapter(cmd);
+                MyDataAdapter.Fill(MyDataSet);
+
+                qry = "select USN, TotalClassesHeld, TotalClassesAttended from tblStudentAttendanceCount where CourseID = @CourseID and SectionID = @SectionID and Year = @Year and SubjectID = @SubjectID";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+
+                param = new SqlParameter("@CourseID", SqlDbType.BigInt, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = courseID;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@SectionID", SqlDbType.BigInt, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = sectionID;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@Year", SqlDbType.Int, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = year;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@SubjectID", SqlDbType.BigInt, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = subjectID;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@FromDate", SqlDbType.DateTime, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = fromDate;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@ToDate", SqlDbType.DateTime, 50);
+                param.Direction = ParameterDirection.Input;
+                param.Value = toDate;
+                cmd.Parameters.Add(param);
+
+                MyDataAdapter = new SqlDataAdapter(cmd);
+                MyDataAdapter.Fill(MyDataSet1);
+
+                MyDataSet.Merge(MyDataSet1);
+            }
+            catch (SqlException SqlEx)
+            {
+
+            }
+            return MyDataSet.Tables[0].DefaultView;
+        }
 
     }
 }

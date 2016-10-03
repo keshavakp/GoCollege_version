@@ -136,6 +136,39 @@ namespace GoCollege_DL
             return qryresult;
         }
 
+        //Delete Faculty
+        public int DeleteFaculty(SqlConnection con, SqlTransaction trans, long facultyID)
+        {
+
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            int qryresult = 0;
+            try
+            {
+
+                qry = "delete from tblFaculty where FacultyID= @FacultyID";
+
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+                SqlParameter param;
+
+                param = new SqlParameter("@FacultyID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = facultyID;
+                cmd.Parameters.Add(param);
+
+                qryresult = cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return qryresult;
+        }
 
 
         

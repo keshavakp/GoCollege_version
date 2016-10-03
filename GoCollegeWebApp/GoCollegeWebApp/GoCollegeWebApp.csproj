@@ -160,6 +160,7 @@
     <Content Include="js\underscore-min.js" />
     <Content Include="SemesterManagement.aspx" />
     <Content Include="SendNotification.aspx" />
+    <Content Include="StudentAttendence.aspx" />
     <Content Include="StudentDetails.aspx" />
     <Content Include="StudentHome.aspx" />
     <Content Include="StudentRegistration.aspx" />
@@ -253,6 +254,13 @@
     </Compile>
     <Compile Include="SendNotification.aspx.designer.cs">
       <DependentUpon>SendNotification.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StudentAttendence.aspx.cs">
+      <DependentUpon>StudentAttendence.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentAttendence.aspx.designer.cs">
+      <DependentUpon>StudentAttendence.aspx</DependentUpon>
     </Compile>
     <Compile Include="StudentDetails.aspx.cs">
       <DependentUpon>StudentDetails.aspx</DependentUpon>

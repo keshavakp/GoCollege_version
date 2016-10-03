@@ -41,6 +41,9 @@ namespace GoCollegeWebApp
             DataView dv = new DataView();
             dv = objFacultyBL.FetchAllFacultyForGrid(long.Parse(Session["UserID"].ToString()));
 
+            dgFacultyDetails.DataSource = null;
+            dgFacultyDetails.DataBind();
+
             if (!dv.Count.Equals(0))
             {
                 dgFacultyDetails.DataSource = dv;
@@ -52,6 +55,7 @@ namespace GoCollegeWebApp
         //Edit COmmand
         protected void btnFacultytEdit_Command(object sender, CommandEventArgs e)
         {
+            ResetAll();
             divAdd.Visible = false;
             divDataGrid.Visible = false;
 
@@ -61,13 +65,22 @@ namespace GoCollegeWebApp
         //Delete Command
         protected void btnFacultyDelete_Command(object sender, CommandEventArgs e)
         {
-          
+            int qry = 0;
+
+            qry = objFacultyBL.DeleteFaculty(long.Parse(e.CommandName.ToString()));
+
+
+            if (qry == 1)
+            {
+                errMsg.Text = "Faculty Deleted Successfully";
+                BindFacultyGrid();
+            }
         }
 
         // Add new click 
         protected void lnkAddNewFaculty(object sender, EventArgs e)
         {
-
+            ResetAll();
             divAdd.Visible = true;
             divDataGrid.Visible = false;
             divEdit.Visible = false;
@@ -77,6 +90,7 @@ namespace GoCollegeWebApp
         //View All click 
         protected void lnkViewAll(object sender, EventArgs e)
         {
+            ResetAll();
             BindFacultyGrid();
         }
 
@@ -101,6 +115,14 @@ namespace GoCollegeWebApp
             }
         }
         
+
+        //Reset Al
+        protected void ResetAll()
+        {
+            errMsg.Text = "";
+            txtFacultyCode.Text = "";
+            txtFacultyPassword.Text = "";
+        }
         
 
     }

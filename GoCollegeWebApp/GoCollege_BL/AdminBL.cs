@@ -631,6 +631,7 @@ namespace GoCollege_BL
  
         }
 
+        //Add NEw Semester
         public int AddNewSemester(Int16 semNumber, long courseID, long totalSubjects)
         {
             DataView dvMsg = null;
@@ -658,6 +659,37 @@ namespace GoCollege_BL
             }
 
             return isinserted;
+        }
+
+        //Delete Semester
+        public int DeleteSemester(long semID)
+        {
+
+            DataView dvMsg = null;
+            int isDeleted = 0;
+            Connection conn = new Connection();
+
+            try
+            {
+                conn.BeginTransaction();
+                isDeleted = objAdmiDL.DeleteSemester(conn.con, conn.trans, semID);
+
+                if (isDeleted == 0)
+                {
+                    conn.RollbackTransaction();
+                    return isDeleted;
+                }
+                conn.CommitTransaction();
+                return isDeleted;
+
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return isDeleted;
         }
 
 
@@ -761,6 +793,87 @@ namespace GoCollege_BL
             return isInserted;
         }
         //End
+
+
+        //FEtch ALl Student Attendence
+        public DataView FetchAllStudentAttendence(DateTime fromDate, DateTime toDate, int year, long courseID, long sectionID, long subjectID, string flag)
+        {
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+
+            try
+            {
+                conn.BeginTransaction();
+                //checkfor duplication
+
+
+                if (flag.Equals("AdminViewStudentAttendence"))
+                {
+                    dvMsg = objAdmiDL.FetchAllStudentAttendence(conn.con, conn.trans, fromDate, toDate, year, courseID, sectionID, subjectID);
+                    return dvMsg.Table.DefaultView;
+                }
+                else if (flag.Equals("TeacherViewStudentAttendence"))
+                {
+
+
+                }
+                else if (flag.Equals("StudentViewStudentAttendence"))
+                {
+
+                }
+                return dvMsg.Table.DefaultView;
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dvMsg.Table.DefaultView;
+        }
+
+
+        //Fetch Student Attendence
+        public DataView FetchIndividualStudentAttendence(string USN, DateTime fromDate, DateTime toDate, int year, long courseID, long sectionID, long subjectID, string flag)
+        {
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+
+            try
+            {
+                conn.BeginTransaction();
+                //checkfor duplication
+
+
+                if (flag.Equals("AdminViewIndividualStudentAttendance"))
+                {
+                    dvMsg = objAdmiDL.FetchIndividualStudentAttendence(conn.con, conn.trans, USN, fromDate, toDate, year, courseID, sectionID, subjectID);
+                    return dvMsg.Table.DefaultView;
+                }
+                else if (flag.Equals("TeacherViewIndividualStudentAttendance"))
+                {
+
+
+                }
+                else if (flag.Equals("StudentViewIndividualStudentAttendance"))
+                {
+
+                }
+                return dvMsg.Table.DefaultView;
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dvMsg.Table.DefaultView;
+        }
+
 
     }
 
