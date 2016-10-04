@@ -11,6 +11,42 @@ namespace GoCollege_DL
 
     public class AdminDL
     {
+
+
+        //Check for Login Details
+        public DataView FetchFor_AdminEditProfile(SqlConnection con, SqlTransaction trans, long adminID)
+        {
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            try
+            {
+                qry = "Select * from tblAdmin where AdminID=@AdminID and AdminStatus in('R','A')";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+                SqlParameter param;
+
+                // parameter for UserName column
+                param = new SqlParameter("@AdminID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminID;
+                cmd.Parameters.Add(param);
+   
+                MyDataAdapter = new SqlDataAdapter(cmd);
+                MyDataAdapter.Fill(MyDataSet);
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+
+            return MyDataSet.Tables[0].DefaultView;
+        }
+
+
+
         //Check for Login Details
         public DataView FetchAdminDetails(SqlConnection con, SqlTransaction trans, String adminUN, String adminPWD)
         { 

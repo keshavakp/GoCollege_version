@@ -18,6 +18,45 @@ namespace GoCollege_BL
 
         PasswordBL objPasswordBL = new PasswordBL();
         
+        //Fetch for AdminEditProfile
+        public DataView FetchFor_AdminEditProfile(long adminID)
+        {
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+            try
+            {
+                conn.BeginTransaction();
+
+                dvMsg = objAdmiDL.FetchFor_AdminEditProfile(conn.con, conn.trans, adminID);
+
+                             
+                //Check
+                if (dvMsg.Count.Equals(0))
+                {
+                    conn.RollbackTransaction();
+                    return dvMsg.Table.DefaultView;
+
+                }
+
+                conn.CommitTransaction();
+                return dvMsg.Table.DefaultView;
+
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dvMsg.Table.DefaultView;
+
+        }
+        
+        
+
+
         //Variables
 
         public DataView AdminLogin(string adminUN,string adminPWD)
