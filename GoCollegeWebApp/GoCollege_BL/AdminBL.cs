@@ -914,6 +914,68 @@ namespace GoCollege_BL
         }
 
 
+        //Fetch All Subjects for DropDown using SemID
+        public DataView FetchSubjectsBySemID(long semID)
+        {
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+            try
+            {
+                conn.BeginTransaction();
+
+                dvMsg = objAdmiDL.FetchSubjectsBySemID(conn.con, conn.trans,semID);
+
+                if (dvMsg.Count.Equals(0))
+                {
+                    return dvMsg.Table.DefaultView;
+                }
+                conn.CommitTransaction();
+                return dvMsg.Table.DefaultView;
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dvMsg.Table.DefaultView;
+
+
+        }
+
+        public DataView FetchAllSectionBySemID(long semID)
+        {
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+            try
+            {
+                conn.BeginTransaction();
+
+                dvMsg = objAdmiDL.FetchAllSectionBySemID(conn.con, conn.trans, semID);
+
+                if (dvMsg.Count.Equals(0))
+                {
+                    return dvMsg.Table.DefaultView;
+                }
+                conn.CommitTransaction();
+                return dvMsg.Table.DefaultView;
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dvMsg.Table.DefaultView;
+
+
+        }
+
+
     }
 
 }

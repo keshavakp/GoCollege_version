@@ -1155,7 +1155,9 @@ namespace GoCollege_DL
             string qry = "";
             try
             {
-                qry = "select USN, SUM(IsAttended) from tblStudentAttendance where CourseID = @CourseID and SectionID = @SectionID and Year = @Year and SubjectID = @SubjectID and Date between @FromDate and @ToDate";
+
+
+                qry = "select STA.USN as StudentUSN, SUM(IsAttended) as Attended,StudentName from tblStudentAttendance STA inner join tblStudent S on  STA.USN = S.StudentUSN and STA.CourseID = @CourseID and SectionID = @SectionID and Year = @Year and SubjectID = @SubjectID and Date between @FromDate and @ToDate group by STA.USN, S.StudentName";
                 cmd = new SqlCommand(qry, con, trans);
                 cmd.CommandType = CommandType.Text;
                 SqlParameter param;
@@ -1292,6 +1294,74 @@ namespace GoCollege_DL
             {
 
             }
+            return MyDataSet.Tables[0].DefaultView;
+        }
+
+
+        //Fetch All Subjects for DropDown using SemID
+        public DataView FetchSubjectsBySemID(SqlConnection con, SqlTransaction trans, long semID)
+        {
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            try
+            {
+                qry = "Select * from tblSubject where SemID=@SemID";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+
+                SqlParameter param;
+
+                param = new SqlParameter("@SemID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = semID;
+                cmd.Parameters.Add(param);
+
+
+                MyDataAdapter = new SqlDataAdapter(cmd);
+                MyDataAdapter.Fill(MyDataSet);
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+
+            return MyDataSet.Tables[0].DefaultView;
+        }
+
+
+        //Fetch Section
+        public DataView FetchAllSectionBySemID(SqlConnection con, SqlTransaction trans, long semID)
+        {
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            try
+            {
+                qry = "Select * from tblSection where SemID=@SemID";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+
+                SqlParameter param;
+
+                param = new SqlParameter("@SemID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = semID;
+                cmd.Parameters.Add(param);
+
+
+                MyDataAdapter = new SqlDataAdapter(cmd);
+                MyDataAdapter.Fill(MyDataSet);
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+
             return MyDataSet.Tables[0].DefaultView;
         }
 
