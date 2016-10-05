@@ -49,7 +49,6 @@ namespace GoCollegeWebApp
                 dgFacultyDetails.DataSource = dv;
                 dgFacultyDetails.DataBind();
             }
-
         }
 
         //Edit COmmand
@@ -58,8 +57,23 @@ namespace GoCollegeWebApp
             ResetAll();
             divAdd.Visible = false;
             divDataGrid.Visible = false;
-
             divEdit.Visible = true;
+
+            DataView dv = new DataView();
+
+            dv = objFacultyBL.GetFacultyDetailsForEdit(long.Parse(e.CommandName.ToString()));
+
+            hffacultyID.Text = e.CommandName.ToString();
+
+            if (!dv.Count.Equals(0))
+            {
+
+                txteditFacultyCode.Text = dv[0]["FacultyCode"].ToString();
+                txteditFacultyName.Text = dv[0]["FacultyName"].ToString();
+                txteditFacultyMobile.Text = dv[0]["FacultyMobile"].ToString();
+                txteditFacultyEmail.Text = dv[0]["FacultyEmail"].ToString();
+                txteditFacultyAddress.Text = dv[0]["FacultyAddress"].ToString();
+            }
         }
 
         //Delete Command
@@ -115,6 +129,47 @@ namespace GoCollegeWebApp
             }
         }
         
+
+        //Edit
+        protected void btneditUpdate_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                int qry = 0;
+
+                qry = objFacultyBL.CheckForExistingMobileAndEmail(long.Parse(hffacultyID.Text.ToString()), 
+                    long.Parse(txteditFacultyMobile.Text.ToString()), txteditFacultyEmail.Text.ToString());
+
+                if (qry == 1)
+                {
+                    errMsg.Text = "Email and Mobile Number Already Exists";
+                }
+                else if (qry == 2)
+                {
+                    errMsg.Text = "Mobile Number Already Exists";
+                }
+                else if (qry == 3)
+                {
+                    errMsg.Text = "Email Already Exists";
+
+                }
+                else
+                {
+                    int result = 0;
+                    result = objFacultyBL.EditUpdateFaculty(long.Parse(hffacultyID.Text.ToString()), txteditFacultyCode.Text.ToString(),
+                        txteditFacultyName.Text.ToString(), long.Parse(txteditFacultyMobile.Text.ToString()),
+                        txteditFacultyEmail.Text.ToString(), txteditFacultyAddress.Text.ToString());
+
+                    if (result == 1)
+                    {
+                        errMsg.Text = "Profile Updated Successfully";
+                        BindFacultyGrid();
+                    }
+                }
+
+
+            }
+        }
 
         //Reset Al
         protected void ResetAll()

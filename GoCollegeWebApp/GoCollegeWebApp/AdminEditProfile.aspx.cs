@@ -46,7 +46,36 @@ namespace GoCollegeWebApp
 
         protected void btnAdminUpdate_Click(object sender, EventArgs e)
         {
-            
+            if (Page.IsValid)
+            {
+                int qry = objAdminBL.FetchFor_AdminExistingMobileAndEmail(long.Parse(Session["UserID"].ToString()), long.Parse(txtMobile.Text.ToString()), txtEmail.Text.ToString());
+
+                if (qry == 1)
+                {
+                    errMsg.Text = "Email and Mobile Number Already Exists"; 
+                }
+                else if (qry == 2)
+                {
+                    errMsg.Text = "Mobile Number Already Exists"; 
+                }
+                else if (qry == 3)
+                {
+                    errMsg.Text = "Email Already Exists";
+
+                }
+                else
+                {
+                    int result =0;
+                    result = objAdminBL.UpdateAdminProfile(long.Parse(Session["UserID"].ToString()), long.Parse(txtMobile.Text.ToString()), txtEmail.Text.ToString(), txtName.Text.ToString());
+
+                    if (result == 1)
+                    {
+                        errMsg.Text = "Profile Updated Successfully";
+                        BindProfileData();
+                    }
+                }
+
+            }
         }
     }
 }

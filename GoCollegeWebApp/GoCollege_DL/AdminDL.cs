@@ -11,6 +11,132 @@ namespace GoCollege_DL
 
     public class AdminDL
     {
+        //Fetch For Existing Mobile Admin
+        public DataView FetchFor_AdminExistingMobile(SqlConnection con, SqlTransaction trans, long adminID,long adminMobile)
+        {
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            try
+            {
+                qry = "Select * from tblAdmin where AdminID not in (@AdminID) and AdminStatus in('R','A') and AdminMobile=@AdminMobile";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+                SqlParameter param;
+
+                // parameter for UserName column
+                param = new SqlParameter("@AdminID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminID;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@AdminMobile", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminMobile;
+                cmd.Parameters.Add(param);
+
+                MyDataAdapter = new SqlDataAdapter(cmd);
+                MyDataAdapter.Fill(MyDataSet);
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+
+            return MyDataSet.Tables[0].DefaultView;
+        }
+        
+        //Fetch For Existing Email Admin
+        public DataView FetchFor_AdminExistingEmail(SqlConnection con, SqlTransaction trans, long adminID, string adminEmail)
+        {
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            try
+            {
+                qry = "Select * from tblAdmin where AdminID not in (@AdminID) and AdminStatus in('R','A') and AdminMobile=@AdminEmail";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+                SqlParameter param;
+
+                // parameter for UserName column
+                param = new SqlParameter("@AdminID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminID;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@AdminEmail", SqlDbType.VarChar,250);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminEmail ;
+                cmd.Parameters.Add(param);
+
+                MyDataAdapter = new SqlDataAdapter(cmd);
+                MyDataAdapter.Fill(MyDataSet);
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+
+            return MyDataSet.Tables[0].DefaultView;
+        }
+
+
+        public int UpdateAdminProfile(SqlConnection con, SqlTransaction trans, long adminID, long adminMobile, string adminEmail, string adminName)
+        {
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+              
+            int result=0;
+
+            try
+            {
+                qry = "Update tblAdmin set AdminName=@AdminName,AdminMobile=@AdminMobile,AdminEmail=@AdminEmail where AdminID=@AdminID";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+                SqlParameter param;
+
+                // parameter for UserName column
+                param = new SqlParameter("@AdminID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminID;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@AdminName", SqlDbType.VarChar, 150);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminName;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@AdminEmail", SqlDbType.VarChar, 250);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminEmail;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@AdminMobile", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = adminMobile;
+                cmd.Parameters.Add(param);
+
+                result = cmd.ExecuteNonQuery();
+
+                //MyDataAdapter = new SqlDataAdapter(cmd);
+                //MyDataAdapter.Fill(MyDataSet);
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+
+            return result;
+        }
+        
 
 
         //Check for Login Details

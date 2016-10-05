@@ -4,8 +4,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-
-    <br />
     <!--banner-->
     <div class="banner">
 
@@ -21,7 +19,6 @@
     </div>
 
     <br />
-
 
     <div class="text-left">
         <asp:Label ID="errMsg" CssClass="errMsg" Text="" runat="server"> </asp:Label>
@@ -113,7 +110,6 @@
     </div>
 
     <div class="row" id="divAdd" runat="server">
-
         <div class="col-md-12 form-group1 ">
             <label class="control-label">Employee Code</label>
             <asp:TextBox ID="txtFacultyCode" runat="server" placeholder="Student USN" required="" CssClass="form-control"></asp:TextBox>
@@ -127,8 +123,6 @@
         </div>
         <div class="clearfix"></div>
         <br />
-
-
         <div class="col-md-12 form-group ">
             <asp:Button ID="btnFacultyAdd" runat="server" Text="Submit" class="btn btn-primary" OnClick="btnFacultyAddSubmit_Click" />
             &nbsp
@@ -139,7 +133,49 @@
     </div>
 
     <div class="row" id="divEdit" runat="server">
+        <div class="col-md-12 form-group1 ">
+            <label class="control-label">Faculty Code</label>
+            <asp:TextBox ID="txteditFacultyCode" runat="server" placeholder="Faculty Code" required="" CssClass="form-control"></asp:TextBox>
+            <%--<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Enter Valid USN" ControlToValidate="txtstudentUSN" Font-Size="Smaller" ForeColor="Red" ValidationExpression="[0-9]+"></asp:RegularExpressionValidator>--%>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-md-12 form-group1 ">
+            <label class="control-label">Faculty Name</label>
+            <asp:TextBox ID="txteditFacultyName" runat="server" placeholder="Faculty Name" required="" CssClass="form-control"></asp:TextBox>
+            <asp:RegularExpressionValidator ID="RegExpstudentName" runat="server" ErrorMessage="Enter Valid Name" ControlToValidate="txteditStudentName" Font-Size="Smaller" ForeColor="Red" ValidationExpression="[A-za-z]+[]*[A-Za-z]*[]*[A-Za-z]*[]*[A-Za-z]*[]*[A-Za-z]*"></asp:RegularExpressionValidator>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-md-12 form-group1 ">
+            <label class="control-label">Faculty Mobile</label>
+            <asp:TextBox ID="txteditFacultyMobile" runat="server" placeholder="Faculty Mobile" required="" CssClass="form-control"></asp:TextBox>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Enter Valid Mobile Number" ControlToValidate="txteditStudentMobile" Font-Size="Smaller" ForeColor="Red" ValidationExpression="[0-9]{10}"></asp:RegularExpressionValidator>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-md-12 form-group1 ">
+            <label class="control-label">Faculty Email</label>
+            <asp:TextBox ID="txteditFacultyEmail" runat="server" placeholder="Faculty Mobile" required="" CssClass="form-control"></asp:TextBox>
+            <asp:RegularExpressionValidator ID="RegExpStudentEmail" runat="server" ErrorMessage="Enter Valid Email Address" ControlToValidate="txteditStudentEmail" Font-Size="Smaller" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+        </div>
+
+
+        <div class="col-md-12 form-group1 ">
+            <label class="control-label">Faculty Address</label>
+            <asp:TextBox ID="txteditFacultyAddress" runat="server" TextMode="MultiLine" placeholder="Student Address" required="" CssClass="form-control"></asp:TextBox>
+        </div>
+
+
+        <div class="col-md-12 form-group ">
+            <asp:Button ID="btneditUpdate" runat="server" Text="Submit" class="btn btn-primary" OnClick="btneditUpdate_Click" />
+            &nbsp
+
+           <button type="reset" class="btn btn-default">Reset</button>
+        </div>
+        <div class="clearfix"></div>
     </div>
 
-
+    <asp:Label ID="hffacultyID" Visible="false" runat="server"></asp:Label>
+    <%--<asp:HiddenField  />--%>
 </asp:Content>

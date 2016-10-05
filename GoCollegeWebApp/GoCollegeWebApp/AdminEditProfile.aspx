@@ -15,20 +15,23 @@
         </h2>
     </div>
 
+    <div class="text-left">
+        <asp:Label ID="errMsg" CssClass="errMsg" Text="" runat="server"> </asp:Label>
+    </div>
 
 
     <div class="row" id="divEditProfile" runat="server">
 
         <div class="col-md-12 form-group1 ">
             <label class="control-label">Name</label>
-            <asp:TextBox ID="txtName" runat="server" placeholder="Student USN" required="" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtName" runat="server" placeholder="Name" required="" CssClass="form-control"></asp:TextBox>
         </div>
         <div class="clearfix"></div>
 
         <br />
         <div class="col-md-12 form-group1 ">
             <label class="control-label">Email</label>
-            <asp:TextBox ID="txtEmail" runat="server" placeholder="Student USN" required="" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtEmail" runat="server" placeholder="Email" required="" CssClass="form-control"></asp:TextBox>
         </div>
         <div class="clearfix"></div>
 
@@ -36,12 +39,12 @@
 
         <div class="col-md-12 form-group1 ">
             <label class="control-label">Mobile</label>
-            <asp:TextBox ID="txtMobile" runat="server" placeholder="Student USN" required="" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtMobile" runat="server" placeholder="Mobile" required="" CssClass="form-control"></asp:TextBox>
         </div>
         <div class="clearfix"></div>
 
         <br />
-       <%-- <div class="col-md-12 form-group1 ">
+        <%-- <div class="col-md-12 form-group1 ">
             <label class="control-label">Old Password</label>
             <asp:TextBox ID="txtoldPassword" TextMode="Password" runat="server" placeholder="Faculty Password" required="" CssClass="form-control"></asp:TextBox>
         </div>

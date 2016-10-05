@@ -51,10 +51,96 @@ namespace GoCollege_BL
 
             }
             return dvMsg.Table.DefaultView;
-
         }
         
-        
+        //Feth
+        public int FetchFor_AdminExistingMobileAndEmail(long adminID, long adminMobile,string adminEmail)
+        {
+            DataView dvMsg = null;
+            DataView dvMsg1 = null;
+
+            Connection conn = new Connection();
+            int qry = 0;
+            try
+            {
+                conn.BeginTransaction();
+
+                dvMsg = objAdmiDL.FetchFor_AdminExistingMobile(conn.con, conn.trans, adminID,adminMobile);
+
+                dvMsg1 = objAdmiDL.FetchFor_AdminExistingEmail(conn.con, conn.trans,adminID, adminEmail);
+                
+                //Check 
+                if (!dvMsg.Count.Equals(0) && !dvMsg1.Count.Equals(0))
+                {
+                    conn.CommitTransaction();
+                    qry = 1;
+                    return qry ;
+                }
+                    //Mobile
+                else if (!dvMsg.Count.Equals(0))
+                {
+                    conn.CommitTransaction();
+                    qry = 2;
+                    return qry;
+                }
+                    //Email
+                else if (!dvMsg1.Count.Equals(0))
+                {
+                    conn.CommitTransaction();
+                    qry = 3;
+                    return qry;
+                }
+                
+                conn.RollbackTransaction();
+                return qry;
+
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return qry;
+        }
+
+
+        public int UpdateAdminProfile(long adminID, long adminMobile, string adminEmail, string adminName)
+        {
+            DataView dvMsg = null;
+
+            Connection conn = new Connection();
+            int qry = 0;
+            try
+            {
+                conn.BeginTransaction();
+
+                qry = objAdmiDL.UpdateAdminProfile(conn.con, conn.trans, adminID, adminMobile, adminEmail,adminName);
+
+
+                //Check 
+                if (qry == 1)
+                {
+                    conn.CommitTransaction();
+                    return qry;
+                }
+
+                conn.RollbackTransaction();
+                return qry;
+
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return qry;
+        }
 
 
         //Variables
