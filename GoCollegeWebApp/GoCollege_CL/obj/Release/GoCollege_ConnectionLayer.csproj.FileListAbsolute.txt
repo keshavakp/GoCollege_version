@@ -1,0 +1,5 @@
+F:\1Private\GoCollege\GoCollege_Web\GoCollegeWebApp\GoCollege_CL\bin\Release\GoCollege_CL.dll
+F:\1Private\GoCollege\GoCollege_Web\GoCollegeWebApp\GoCollege_CL\bin\Release\GoCollege_CL.pdb
+F:\1Private\GoCollege\GoCollege_Web\GoCollegeWebApp\GoCollege_CL\obj\Release\GoCollege_ConnectionLayer.csprojResolveAssemblyReference.cache
+F:\1Private\GoCollege\GoCollege_Web\GoCollegeWebApp\GoCollege_CL\obj\Release\GoCollege_CL.dll
+F:\1Private\GoCollege\GoCollege_Web\GoCollegeWebApp\GoCollege_CL\obj\Release\GoCollege_CL.pdb

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="GoCollegeConnectionString-Web.config Connection String" description="GoCollegeConnectionString Connection String used in web.config by the application to access the database." defaultValue="Data Source=KESHU-VAIO\SQLSERVER;Initial Catalog=GoCollege1;User ID=sa;Password=sa@123" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="F:\\1Private\\GoCollege\\GoCollege_Web\\GoCollegeWebApp\\GoCollegeWebApp\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='GoCollegeConnectionString']/@connectionString" />
+  </parameter>
+</parameters>
