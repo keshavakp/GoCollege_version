@@ -174,8 +174,12 @@ namespace GoCollegeWebApp
         
         //Edit Update Student Click
         protected void btneditUpdate_Click(object sender, EventArgs e)
-        { 
-
+        {
+            if (Page.IsValid)
+            {
+                int result = 0;
+                
+            }
         }
 
 

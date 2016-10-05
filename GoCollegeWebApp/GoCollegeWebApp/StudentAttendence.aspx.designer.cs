@@ -22,13 +22,13 @@ namespace GoCollegeWebApp {
         protected global::System.Web.UI.WebControls.Label errMsg;
         
         /// <summary>
-        /// txtDate control.
+        /// txtFrmDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDate;
+        protected global::System.Web.UI.WebControls.TextBox txtFrmDate;
         
         /// <summary>
         /// ddlstudentCourse control.
@@ -65,6 +65,15 @@ namespace GoCollegeWebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSection;
+        
+        /// <summary>
+        /// txtToDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtToDate;
         
         /// <summary>
         /// divDataGrid control.

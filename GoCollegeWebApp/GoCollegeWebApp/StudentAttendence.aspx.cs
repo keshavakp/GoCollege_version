@@ -48,7 +48,7 @@ namespace GoCollegeWebApp
             ddlstudentCourse.DataBind();
             ddlstudentCourse.Items.Insert(0, new ListItem(" Select ", "0"));
 
-            txtDate.Text = DateTime.Now.ToShortDateString();
+          //  txtDate.Text = DateTime.Now.ToShortDateString();
         }
 
         //Bind Sem
@@ -118,7 +118,7 @@ namespace GoCollegeWebApp
 
 
 
-            dv = objAdminBL.FetchAllStudentAttendence(Convert.ToDateTime(txtDate.Text.ToString()), Convert.ToDateTime(txtDate.Text.ToString()), 2016,
+            dv = objAdminBL.FetchAllStudentAttendence(Convert.ToDateTime(txtFrmDate.Text.ToString()), Convert.ToDateTime(txtToDate.Text.ToString()), 2016,
                 long.Parse(ddlstudentCourse.SelectedValue.ToString()), long.Parse(ddlSection.SelectedValue.ToString()), 
                 long.Parse(ddlSubject.SelectedValue.ToString()), "AdminViewStudentAttendence");
 

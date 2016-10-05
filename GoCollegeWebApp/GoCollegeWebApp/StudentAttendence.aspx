@@ -24,8 +24,8 @@
     <div class="row">
 
         <div class="col-lg-3">
-            <label class="control-label">Date</label>
-            <asp:TextBox ID="txtDate" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+            <label class="control-label">From Date</label>
+            <asp:TextBox ID="txtFrmDate" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
         </div>
 
         <div class="col-lg-2">
@@ -50,6 +50,14 @@
             <asp:DropDownList CssClass="form-control" ID="ddlSection" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlstudentSection_SelectedIndexChanged">
             </asp:DropDownList>
 
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-3">
+            <label class="control-label">To Date</label>
+            <asp:TextBox ID="txtToDate" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
         </div>
     </div>
 
@@ -80,11 +88,10 @@
                     <ItemTemplate>
                         <asp:Label ID="lblstdName" Text='<%#Eval("StudentName")%>' CssClass="lblColor" runat="server"></asp:Label>
                     </ItemTemplate>
-
                     <HeaderStyle CssClass="HeaderTextContent" ForeColor="White"></HeaderStyle>
-
                     <ItemStyle HorizontalAlign="Center" CssClass="MainTextContent"></ItemStyle>
                 </asp:TemplateColumn>
+
 
                 <asp:TemplateColumn HeaderStyle-Wrap="false" HeaderStyle-ForeColor="black" HeaderText="Attended" SortExpression="FCode" HeaderStyle-CssClass="HeaderTextContent" ItemStyle-CssClass="MainTextContent">
                     <ItemTemplate>

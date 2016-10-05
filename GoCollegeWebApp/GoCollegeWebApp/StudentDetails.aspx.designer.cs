@@ -148,6 +148,24 @@ namespace GoCollegeWebApp {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegExpstudentName;
         
         /// <summary>
+        /// ddleditStudentCourse control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddleditStudentCourse;
+        
+        /// <summary>
+        /// ddltxtStudentSemester control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddltxtStudentSemester;
+        
+        /// <summary>
         /// txteditStudentMobile control.
         /// </summary>
         /// <remarks>
@@ -191,24 +209,6 @@ namespace GoCollegeWebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txteditStudentAddress;
-        
-        /// <summary>
-        /// ddleditStudentCourse control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddleditStudentCourse;
-        
-        /// <summary>
-        /// ddltxtStudentSemester control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddltxtStudentSemester;
         
         /// <summary>
         /// btneditUpdate control.

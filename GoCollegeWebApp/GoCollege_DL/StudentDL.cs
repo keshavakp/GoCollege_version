@@ -307,7 +307,7 @@ namespace GoCollege_DL
             string qry = "";
             try
             {
-                qry = "Select * from tblStudent where CollegeID=@CollegeID ";
+                qry = "Select S.StudentID, S.StudentUSN,S.StudentName,S.StudentMobile,S.StudentEmail,S.StudentAddress,C.CourseShortName,C.CourseID ,SM.SemNumber,SM.SemID from tblStudent S inner join tblCourse C on S.CourseID = C.CourseID and S.CollegeID=@CollegeID inner join tblSemester SM on S.SemID = SM.SemID order by S.StudentUSN";
                 cmd = new SqlCommand(qry, con, trans);
                 cmd.CommandType = CommandType.Text;
                 SqlParameter param;

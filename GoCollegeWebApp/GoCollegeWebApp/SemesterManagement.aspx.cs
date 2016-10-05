@@ -41,7 +41,7 @@ namespace GoCollegeWebApp
             {
                 divAdd.Visible = false;
                 divDataGrid.Visible = true;
-
+                divEdit.Visible = false;
 
                 DataView dv = new DataView();
                 dv = objAdminBL.FetchAllSemesterForGrid(long.Parse(Session["CollegeID"].ToString()));
@@ -69,7 +69,7 @@ namespace GoCollegeWebApp
         {
             BindCourse();
            // BindSemester();
-           // divEdit.Visible = false;
+            divEdit.Visible = false;
            divAdd.Visible = true;
            divDataGrid.Visible = false;
 
@@ -109,6 +109,9 @@ namespace GoCollegeWebApp
         // Edit Command
         protected void btnSemestertEdit_Command(object sender, CommandEventArgs e)
         {
+            DataView dv = new DataView();
+
+            dv = objAdminBL.FetchSemesterForEdit(long.Parse(e.CommandName.ToString()));
 
         }
 

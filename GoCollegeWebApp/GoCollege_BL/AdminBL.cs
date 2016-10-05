@@ -1061,7 +1061,37 @@ namespace GoCollege_BL
 
         }
 
+        //Fetch Sem for Edit
 
+        public DataView FetchSemesterForEdit(long semID)
+        {
+
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+            try
+            {
+                conn.BeginTransaction();
+
+                dvMsg = objAdmiDL.FetchSemesterForEdit(conn.con, conn.trans, semID);
+
+                if (dvMsg.Count.Equals(0))
+                {
+                    return dvMsg.Table.DefaultView;
+                }
+                conn.CommitTransaction();
+                return dvMsg.Table.DefaultView;
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dvMsg.Table.DefaultView;
+
+        }
     }
 
 }

@@ -23,7 +23,7 @@
         <div class="col-lg-4">
 
 
-            <a href="AdminLogin.aspx" class="">
+            <a href="SendNotification.aspx" class="">
                 <div class="banner1">
                     <%--<i class="fa fa-envelope"></i>--%>
                     <span>Notifications</span>
@@ -31,13 +31,13 @@
             </a>
 
 
-            <a href="AdminLogin.aspx" class="">
+            <a href="#" class="">
                 <div class="banner1">
                     <%--<i class="fa fa-envelope"></i>--%>
                     <span>Internals</span>
                 </div>
             </a>
-            <a href="AdminLogin.aspx" class="">
+            <a href="#" class="">
                 <div class="banner1">
                     <%--<i class="fa fa-envelope"></i>--%>
                     <span>Syllabus Copy</span>
@@ -47,7 +47,7 @@
         </div>
 
         <div class="col-lg-4">
-            <a href="AdminLogin.aspx" class="">
+            <a href="StudentAttendence.aspx" class="">
                 <div class="banner1">
                     <%--<i class="fa fa-envelope"></i>--%>
                     <span>Attendence</span>
@@ -55,14 +55,14 @@
             </a>
 
 
-            <a href="AdminLogin.aspx" class="">
+            <a href="#" class="">
                 <div class="banner1">
                     <%--<i class="fa fa-envelope"></i>--%>
                     <span>Notes</span>
                 </div>
             </a>
 
-             <a href="AdminLogin.aspx" class="">
+             <a href="#" class="">
                 <div class="banner1">
                     <%--<i class="fa fa-envelope"></i>--%>
                     <span>Events</span>
@@ -71,7 +71,7 @@
         </div>
 
         <div class="col-lg-4">
-               <a href="AdminLogin.aspx" class="">
+               <a href="#" class="">
                 <div class="banner1">
                     <%--<i class="fa fa-envelope"></i>--%>
                     <span>Time Table</span>
@@ -79,14 +79,14 @@
             </a>
 
 
-            <a href="AdminLogin.aspx" class="">
+            <a href="#" class="">
                 <div class="banner1">
                     <%--<i class="fa fa-envelope"></i>--%>
                     <span>Question Papers</span>
                 </div>
             </a>
 
-             <a href="AdminLogin.aspx" class="">
+             <a href="#" class="">
                 <div class="banner1">
                     <%--<i class="fa fa-envelope"></i>--%>
                     <span>Create ID's</span>

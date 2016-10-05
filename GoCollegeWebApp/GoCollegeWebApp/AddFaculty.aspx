@@ -112,7 +112,7 @@
     <div class="row" id="divAdd" runat="server">
         <div class="col-md-12 form-group1 ">
             <label class="control-label">Employee Code</label>
-            <asp:TextBox ID="txtFacultyCode" runat="server" placeholder="Student USN" required="" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtFacultyCode" runat="server" placeholder="Faculty Code" required="" CssClass="form-control"></asp:TextBox>
         </div>
         <div class="clearfix"></div>
 
@@ -143,27 +143,27 @@
         <div class="col-md-12 form-group1 ">
             <label class="control-label">Faculty Name</label>
             <asp:TextBox ID="txteditFacultyName" runat="server" placeholder="Faculty Name" required="" CssClass="form-control"></asp:TextBox>
-            <asp:RegularExpressionValidator ID="RegExpstudentName" runat="server" ErrorMessage="Enter Valid Name" ControlToValidate="txteditStudentName" Font-Size="Smaller" ForeColor="Red" ValidationExpression="[A-za-z]+[]*[A-Za-z]*[]*[A-Za-z]*[]*[A-Za-z]*[]*[A-Za-z]*"></asp:RegularExpressionValidator>
+            <asp:RegularExpressionValidator ID="RegExpstudentName" runat="server" ErrorMessage="Enter Valid Name" ControlToValidate="txteditFacultyName" Font-Size="Smaller" ForeColor="Red" ValidationExpression="[A-za-z]+[]*[A-Za-z]*[]*[A-Za-z]*[]*[A-Za-z]*[]*[A-Za-z]*"></asp:RegularExpressionValidator>
         </div>
         <div class="clearfix"></div>
 
         <div class="col-md-12 form-group1 ">
             <label class="control-label">Faculty Mobile</label>
             <asp:TextBox ID="txteditFacultyMobile" runat="server" placeholder="Faculty Mobile" required="" CssClass="form-control"></asp:TextBox>
-            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Enter Valid Mobile Number" ControlToValidate="txteditStudentMobile" Font-Size="Smaller" ForeColor="Red" ValidationExpression="[0-9]{10}"></asp:RegularExpressionValidator>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Enter Valid Mobile Number" ControlToValidate="txteditFacultyMobile" Font-Size="Smaller" ForeColor="Red" ValidationExpression="[0-9]{10}"></asp:RegularExpressionValidator>
         </div>
         <div class="clearfix"></div>
 
         <div class="col-md-12 form-group1 ">
             <label class="control-label">Faculty Email</label>
             <asp:TextBox ID="txteditFacultyEmail" runat="server" placeholder="Faculty Mobile" required="" CssClass="form-control"></asp:TextBox>
-            <asp:RegularExpressionValidator ID="RegExpStudentEmail" runat="server" ErrorMessage="Enter Valid Email Address" ControlToValidate="txteditStudentEmail" Font-Size="Smaller" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+            <asp:RegularExpressionValidator ID="RegExpStudentEmail" runat="server" ErrorMessage="Enter Valid Email Address" ControlToValidate="txteditFacultyEmail" Font-Size="Smaller" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
         </div>
 
 
         <div class="col-md-12 form-group1 ">
             <label class="control-label">Faculty Address</label>
-            <asp:TextBox ID="txteditFacultyAddress" runat="server" TextMode="MultiLine" placeholder="Student Address" required="" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txteditFacultyAddress" runat="server" TextMode="MultiLine" placeholder="Faculty Address" required="" CssClass="form-control"></asp:TextBox>
         </div>
 
 

@@ -135,7 +135,7 @@ namespace GoCollege_DL
                 param.Value = faculyID;
                 cmd.Parameters.Add(param);
 
-                param = new SqlParameter("@FacultyMobile", SqlDbType.VarChar, 250);
+                param = new SqlParameter("@FacultyEmail", SqlDbType.VarChar, 250);
                 param.Direction = ParameterDirection.Input;
                 param.Value = facultyEmail;
                 cmd.Parameters.Add(param);
@@ -289,7 +289,7 @@ namespace GoCollege_DL
             try
             {
 
-                qry = "update tblFaculty set FacultyCode=@ where FacultyID=@FacultyID ";
+                qry = "update tblFaculty set FacultyCode=@FacultyCode ,FacultyName=@FacultyName,FacultyMobile=@FacultyMobile,FacultyEmail=@FacultyEmail,FacultyAddress=@FacultyAddress where FacultyID=@FacultyID ";
 
                 cmd = new SqlCommand(qry, con, trans);
                 cmd.CommandType = CommandType.Text;
@@ -332,6 +332,9 @@ namespace GoCollege_DL
 
 
                 qryresult = cmd.ExecuteNonQuery();
+
+                //MyDataAdapter = new SqlDataAdapter(cmd);
+                //MyDataAdapter.Fill(MyDataSet);
 
             }
             catch (Exception ex)

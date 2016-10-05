@@ -1491,5 +1491,39 @@ namespace GoCollege_DL
             return MyDataSet.Tables[0].DefaultView;
         }
 
+        //Fetch Sem for Edit
+
+        public DataView FetchSemesterForEdit(SqlConnection con,SqlTransaction trans, long semID)
+        {
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            try
+            {
+                qry = "Select * from tblSemester where SemID=@SemID";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+
+                SqlParameter param;
+
+                param = new SqlParameter("@SemID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = semID;
+                cmd.Parameters.Add(param);
+
+
+                MyDataAdapter = new SqlDataAdapter(cmd);
+                MyDataAdapter.Fill(MyDataSet);
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+
+            return MyDataSet.Tables[0].DefaultView;
+        }
+
     }
 }

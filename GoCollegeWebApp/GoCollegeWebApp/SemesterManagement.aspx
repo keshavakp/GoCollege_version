@@ -63,7 +63,7 @@
 
              
                 <%-- Edit and Delete --%>
-                <asp:TemplateColumn HeaderText="Edit" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="HeaderTextContent" ItemStyle-CssClass="MainTextContent">
+           <%--     <asp:TemplateColumn HeaderText="Edit" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="HeaderTextContent" ItemStyle-CssClass="MainTextContent">
                     <ItemTemplate>
                         <asp:LinkButton ID="lnkbtnEdit" runat="server"
                             CommandName='<%#DataBinder.Eval(Container.DataItem,"SemID")%>'
@@ -71,7 +71,7 @@
                     </ItemTemplate>
                     <HeaderStyle CssClass="HeaderTextContent"></HeaderStyle>
                     <ItemStyle HorizontalAlign="Center" CssClass="MainTextContent"></ItemStyle>
-                </asp:TemplateColumn>
+                </asp:TemplateColumn>--%>
 
                 <asp:TemplateColumn HeaderText="Edit" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="HeaderTextContent" ItemStyle-CssClass="MainTextContent">
                     <ItemTemplate>
@@ -128,4 +128,40 @@
 
     </div>
 
+
+      <div class="row" id="divEdit" runat="server">
+
+        <div class="col-md-12 form-group1 ">
+            <label class="control-label">Semester Number</label>
+            <asp:TextBox ID="txtEditSemNum" runat="server" placeholder="Semester Number" required="" CssClass="form-control"></asp:TextBox>
+        </div>
+        <div class="clearfix"></div>
+
+        <br />
+        <div class="col-md-12 form-group1 ">
+            <label class="control-label">Course</label>
+            <asp:DropDownList CssClass="form-control" ID="ddlEditCourse" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlstudentSem_SelectedIndexChanged">
+            </asp:DropDownList>
+        </div>
+        <div class="clearfix"></div>
+
+        <br />
+
+        <div class="col-md-12 form-group1 ">
+            <label class="control-label">Semester Total Subjects</label>
+            <asp:TextBox ID="txtEditSemTotalSubjects" runat="server" placeholder="Total Sujects" required="" CssClass="form-control"></asp:TextBox>
+
+        </div>
+        <div class="clearfix"></div>
+        <br />
+
+        <div class="col-md-12 form-group ">
+            <asp:Button ID="Button1" runat="server" Text="Submit" class="btn btn-primary" OnClick="btnSemesterAddSubmit_Click" />
+            &nbsp
+
+           <button type="reset" class="btn btn-default">Reset</button>
+        </div>
+        <div class="clearfix"></div>
+
+    </div>
 </asp:Content>

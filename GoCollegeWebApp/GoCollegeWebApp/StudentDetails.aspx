@@ -55,6 +55,27 @@
                     <ItemStyle HorizontalAlign="Center" CssClass="MainTextContent"></ItemStyle>
                 </asp:TemplateColumn>
 
+
+                <asp:TemplateColumn HeaderText="Course" HeaderStyle-ForeColor="White" SortExpression="StuentName" HeaderStyle-CssClass="HeaderTextContent" ItemStyle-CssClass="MainTextContent" ItemStyle-HorizontalAlign="Center">
+                    <ItemTemplate>
+                        <asp:Label ID="lblStudentCourse" Text='<%#Eval("CourseShortName")%>' CssClass="lblColor" runat="server"></asp:Label>
+                    </ItemTemplate>
+
+                    <HeaderStyle CssClass="HeaderTextContent" ForeColor="White"></HeaderStyle>
+
+                    <ItemStyle HorizontalAlign="Center" CssClass="MainTextContent"></ItemStyle>
+                </asp:TemplateColumn>
+
+                <asp:TemplateColumn HeaderText="Sem" HeaderStyle-ForeColor="White" SortExpression="StuentName" HeaderStyle-CssClass="HeaderTextContent" ItemStyle-CssClass="MainTextContent" ItemStyle-HorizontalAlign="Center">
+                    <ItemTemplate>
+                        <asp:Label ID="lblStudentSem" Text='<%#Eval("SemNumber")%>' CssClass="lblColor" runat="server"></asp:Label>
+                    </ItemTemplate>
+
+                    <HeaderStyle CssClass="HeaderTextContent" ForeColor="White"></HeaderStyle>
+
+                    <ItemStyle HorizontalAlign="Center" CssClass="MainTextContent"></ItemStyle>
+                </asp:TemplateColumn>
+
                 <asp:TemplateColumn HeaderText="Mobile" HeaderStyle-ForeColor="White" SortExpression="MobileNum" HeaderStyle-CssClass="HeaderTextContent" ItemStyle-CssClass="MainTextContent" ItemStyle-HorizontalAlign="Center">
                     <ItemTemplate>
                         <asp:Label ID="lblStudentMobile" Text='<%#Eval("StudentMobile")%>' CssClass="lblColor" runat="server"></asp:Label>
@@ -194,6 +215,19 @@
         <div class="clearfix"></div>
 
         <div class="col-md-12 form-group1 ">
+            <label class="control-label">Course</label>
+            <asp:DropDownList runat="server" ID="ddleditStudentCourse" CssClass="form-control"></asp:DropDownList>
+        </div>
+        <div class="clearfix"></div>
+
+
+        <div class="col-md-12 form-group1 ">
+            <label class="control-label">Semester</label>
+            <asp:DropDownList runat="server" ID="ddltxtStudentSemester" CssClass="form-control"></asp:DropDownList>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-md-12 form-group1 ">
             <label class="control-label">Student Mobile</label>
             <asp:TextBox ID="txteditStudentMobile" runat="server" placeholder="Student Mobile" required="" CssClass="form-control"></asp:TextBox>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Enter Valid Mobile Number" ControlToValidate="txteditStudentMobile" Font-Size="Smaller" ForeColor="Red" ValidationExpression="[0-9]{10}"></asp:RegularExpressionValidator>
@@ -213,16 +247,7 @@
         </div>
 
 
-        <div class="col-md-12 form-group1 ">
-            <label class="control-label">USN</label>
-            <asp:DropDownList runat="server" ID="ddleditStudentCourse" CssClass="form-control"></asp:DropDownList>
-        </div>
 
-
-        <div class="col-md-12 form-group1 ">
-            <label class="control-label">USN</label>
-            <asp:DropDownList runat="server" ID="ddltxtStudentSemester" CssClass="form-control"></asp:DropDownList>
-        </div>
 
         <div class="col-md-12 form-group ">
             <asp:Button ID="btneditUpdate" runat="server" Text="Submit" class="btn btn-primary" OnClick="btneditUpdate_Click" />
