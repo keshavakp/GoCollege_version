@@ -56,14 +56,13 @@
                     <ItemTemplate>
                         <asp:Label ID="lblSemTotalSubjects" Text='<%#Eval("SemTotalSubjects")%>' CssClass="lblColor" runat="server"></asp:Label>
                     </ItemTemplate>
-
                     <HeaderStyle CssClass="HeaderTextContent" ForeColor="White"></HeaderStyle>
                     <ItemStyle HorizontalAlign="Center" CssClass="MainTextContent"></ItemStyle>
                 </asp:TemplateColumn>
 
              
                 <%-- Edit and Delete --%>
-           <%--     <asp:TemplateColumn HeaderText="Edit" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="HeaderTextContent" ItemStyle-CssClass="MainTextContent">
+                <asp:TemplateColumn HeaderText="Edit" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="HeaderTextContent" ItemStyle-CssClass="MainTextContent">
                     <ItemTemplate>
                         <asp:LinkButton ID="lnkbtnEdit" runat="server"
                             CommandName='<%#DataBinder.Eval(Container.DataItem,"SemID")%>'
@@ -71,7 +70,7 @@
                     </ItemTemplate>
                     <HeaderStyle CssClass="HeaderTextContent"></HeaderStyle>
                     <ItemStyle HorizontalAlign="Center" CssClass="MainTextContent"></ItemStyle>
-                </asp:TemplateColumn>--%>
+                </asp:TemplateColumn>
 
                 <asp:TemplateColumn HeaderText="Edit" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="HeaderTextContent" ItemStyle-CssClass="MainTextContent">
                     <ItemTemplate>
@@ -156,12 +155,12 @@
         <br />
 
         <div class="col-md-12 form-group ">
-            <asp:Button ID="Button1" runat="server" Text="Submit" class="btn btn-primary" OnClick="btnSemesterAddSubmit_Click" />
+            <asp:Button ID="btnEditUpdate" runat="server" Text="Submit" class="btn btn-primary" OnClick="btnEditUpdate_Click" />
             &nbsp
 
            <button type="reset" class="btn btn-default">Reset</button>
         </div>
         <div class="clearfix"></div>
-
+         <asp:HiddenField ID="hfSemID" runat="server" />
     </div>
 </asp:Content>

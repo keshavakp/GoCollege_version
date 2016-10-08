@@ -109,10 +109,57 @@ namespace GoCollegeWebApp
         // Edit Command
         protected void btnSemestertEdit_Command(object sender, CommandEventArgs e)
         {
-            DataView dv = new DataView();
+            divAdd.Visible = false;
+            divDataGrid.Visible = false;
+            divEdit.Visible = true;
 
+            hfSemID.Value = e.CommandName.ToString();
+
+            DataView dv = new DataView();
             dv = objAdminBL.FetchSemesterForEdit(long.Parse(e.CommandName.ToString()));
 
+            DataView dvCourse = new DataView();
+            dvCourse =  objAdminBL.FetchAllCourse(long.Parse(Session["UserID"].ToString()));           
+
+            //ddlEditCourse
+            ddlEditCourse.DataSource = dvCourse;
+            ddlEditCourse.DataTextField = "CourseName";
+            ddlEditCourse.DataValueField = "CourseID";
+            ddlEditCourse.DataBind();
+            ddlEditCourse.Items.Insert(0, new ListItem(" Select ", "0"));
+
+            long courseID = 0;
+                                    
+            if (!dv.Count.Equals(0))     
+            {
+                txtEditSemNum.Text = dv[0]["SemNumber"].ToString();
+                courseID = long.Parse(dv[0]["CourseID"].ToString());
+                ddlEditCourse.SelectedValue = courseID.ToString();
+                txtEditSemTotalSubjects.Text = dv[0]["SemTotalSubjects"].ToString();
+            }
+
+        }
+
+        //Edit Update 
+        protected void btnEditUpdate_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                int qry = 0;
+
+                qry = objAdminBL.EditUpdateSemester(long.Parse(hfSemID.Value.ToString()),
+                    int.Parse(txtEditSemNum.Text.ToString()), long.Parse(ddlEditCourse.SelectedValue.ToString()),long.Parse(txtEditSemTotalSubjects.Text.ToString()) );
+
+                if (qry == 1)
+                {
+                    errMsg.Text = "Semester Details Updated Successfully";
+                    BindSemester();
+                }
+                else
+                {
+
+                }
+            }
         }
 
         

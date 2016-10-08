@@ -12,4 +12,3 @@ E:\KESHU\Personal\MyCampuz\WebApp\GoCollegeWebApp\GoCollege_CL\bin\Debug\GoColle
 E:\KESHU\Personal\MyCampuz\WebApp\GoCollegeWebApp\GoCollege_CL\obj\Debug\GoCollege_ConnectionLayer.csprojResolveAssemblyReference.cache
 E:\KESHU\Personal\MyCampuz\WebApp\GoCollegeWebApp\GoCollege_CL\obj\Debug\GoCollege_CL.dll
 E:\KESHU\Personal\MyCampuz\WebApp\GoCollegeWebApp\GoCollege_CL\obj\Debug\GoCollege_CL.pdb
-F:\1Private\GoCollege\GoCollege_Web\GoCollegeWebApp\GoCollege_CL\obj\Debug\GoCollege_ConnectionLayer.csprojResolveAssemblyReference.cache

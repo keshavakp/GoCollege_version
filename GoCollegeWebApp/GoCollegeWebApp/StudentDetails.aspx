@@ -246,9 +246,6 @@
             <asp:TextBox ID="txteditStudentAddress" runat="server" TextMode="MultiLine" placeholder="Student Address" required="" CssClass="form-control"></asp:TextBox>
         </div>
 
-
-
-
         <div class="col-md-12 form-group ">
             <asp:Button ID="btneditUpdate" runat="server" Text="Submit" class="btn btn-primary" OnClick="btneditUpdate_Click" />
             &nbsp

@@ -1092,6 +1092,40 @@ namespace GoCollege_BL
             return dvMsg.Table.DefaultView;
 
         }
+
+
+        //EDit Update Semester
+        public int EditUpdateSemester(long semID, int semNum, long courseID, long semTotalSubjects)
+        {
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+            int qry = 0;
+            try
+            {
+                conn.BeginTransaction();
+
+                qry = objAdmiDL.EditUpdateSemester(conn.con, conn.trans, semID, semNum, courseID, semTotalSubjects);
+
+                if (qry==0)
+                {
+                    conn.RollbackTransaction();
+                    return qry;
+                }
+
+                conn.CommitTransaction();
+                return qry;
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return qry;
+        }
+
     }
 
 }

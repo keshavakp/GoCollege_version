@@ -1525,5 +1525,58 @@ namespace GoCollege_DL
             return MyDataSet.Tables[0].DefaultView;
         }
 
+        //Edit update Semester
+        public int EditUpdateSemester(SqlConnection con, SqlTransaction trans, long semID, int semNumber, long courseID, long semTotalSubjects)
+        {
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+
+            int result=0;
+            try
+            {
+                qry = "Update tblSemester set SemNumber=@SemNumber,CourseID=@CourseID,SemTotalSubjects=@SemTotalSubjects where SemID=@SemID";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+
+                SqlParameter param;
+
+                param = new SqlParameter("@SemID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = semID;
+                cmd.Parameters.Add(param);
+
+
+                param = new SqlParameter("@SemNumber", SqlDbType.Int);
+                param.Direction = ParameterDirection.Input;
+                param.Value = semNumber;
+                cmd.Parameters.Add(param);
+
+
+                param = new SqlParameter("@CourseID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = courseID;
+                cmd.Parameters.Add(param);
+
+
+                param = new SqlParameter("@SemTotalSubjects", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = semTotalSubjects;
+                cmd.Parameters.Add(param);
+
+                result = cmd.ExecuteNonQuery();
+
+                //MyDataAdapter = new SqlDataAdapter(cmd);
+                //MyDataAdapter.Fill(MyDataSet);
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+
+            return result;
+        }
     }
 }
