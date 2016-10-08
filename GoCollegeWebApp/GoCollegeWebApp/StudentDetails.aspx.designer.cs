@@ -157,13 +157,13 @@ namespace GoCollegeWebApp {
         protected global::System.Web.UI.WebControls.DropDownList ddleditStudentCourse;
         
         /// <summary>
-        /// ddltxtStudentSemester control.
+        /// ddlEditStudentSemester control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddltxtStudentSemester;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEditStudentSemester;
         
         /// <summary>
         /// txteditStudentMobile control.
@@ -218,5 +218,23 @@ namespace GoCollegeWebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btneditUpdate;
+        
+        /// <summary>
+        /// hfcourseID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfcourseID;
+        
+        /// <summary>
+        /// hfsemID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfsemID;
     }
 }

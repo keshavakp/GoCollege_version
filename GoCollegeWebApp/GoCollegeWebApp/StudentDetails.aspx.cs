@@ -44,18 +44,20 @@ namespace GoCollegeWebApp
 
             divEdit.Visible = false;
             DataView dv = new DataView();
-            dv= objStudentBL.FetchAllStudentForGrid(long.Parse(Session["CollegeID"].ToString()));
+            dv = objStudentBL.FetchAllStudentForGrid(long.Parse(Session["CollegeID"].ToString()));
 
             if (!dv.Count.Equals(0))
             {
                 dgStudentDetails.DataSource = dv;
                 dgStudentDetails.DataBind();
-            } 
+            }
         }
 
         //edit click Bind Data to Student Edit FOrm
         protected void btnStudentEdit_Command(object sender, CommandEventArgs e)
         {
+
+
             ResetAll();
             divAdd.Visible = false;
             divDataGrid.Visible = false;
@@ -71,8 +73,65 @@ namespace GoCollegeWebApp
                 txteditStudentMobile.Text = dv[0]["StudentMobile"].ToString();
                 txteditStudentEmail.Text = dv[0]["StudentEmail"].ToString();
                 txteditStudentAddress.Text = dv[0]["StudentAddress"].ToString();
+
+                hfcourseID.Value = dv[0]["CourseID"].ToString();
+                hfsemID.Value = dv[0]["SemID"].ToString();
             }          
+
+            DataView dvCourse = new DataView();
+            dvCourse = objAdminBL.FetchAllCourse(long.Parse(Session["UserID"].ToString()));
+
+            if (!dvCourse.Count.Equals(0))
+            {
+                ddleditStudentCourse.DataSource = dvCourse;
+
+                ddleditStudentCourse.DataTextField = "CourseName";
+                ddleditStudentCourse.DataValueField = "CourseID";
+                ddleditStudentCourse.DataBind();
+                ddleditStudentCourse.Items.Insert(0, new ListItem(" Select ", "0"));
+                ddleditStudentCourse.SelectedValue = hfcourseID.Value.ToString();
+            }
+
+
+            DataView dvSem = new DataView();
+            dvSem = objAdminBL.FetchAllSemsByCourseID(long.Parse(hfcourseID.Value.ToString()));
+
+            if (!dvSem.Count.Equals(0))
+            {
+                ddlEditStudentSemester.DataSource = dvSem;
+                ddlEditStudentSemester.DataTextField = "SemNumber";
+                ddlEditStudentSemester.DataValueField = "SemID";
+                ddlEditStudentSemester.DataBind();
+                ddlEditStudentSemester.Items.Insert(0, new ListItem(" Select ", "0"));
+
+                ddlEditStudentSemester.SelectedValue = hfsemID.Value.ToString();
+            }
+          
         }
+
+        //Bind Sem On ddlEdit Course Change
+        protected void ddlstudentEditCourse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (long.Parse(ddlstudentCourse.SelectedValue.ToString()) == 0)
+            {
+                ddlstudentSemester.Items.Clear();
+            }
+            else
+            {
+                DataView dv = new DataView();
+
+                dv = objAdminBL.FetchAllSemsByCourseID(long.Parse(ddlstudentCourse.SelectedValue.ToString()));
+
+                ddlEditStudentSemester.DataSource = dv;
+                ddlEditStudentSemester.DataTextField = "SemNumber";
+                ddlEditStudentSemester.DataValueField = "SemID";
+                ddlEditStudentSemester.DataBind();
+                ddlEditStudentSemester.Items.Insert(0, new ListItem(" Select ", "0"));
+
+            }
+        }
+
+
 
         //Delete click
         protected void btnStudentDelete_Command(object sender, CommandEventArgs e)
@@ -110,8 +169,7 @@ namespace GoCollegeWebApp
             ddlstudentCourse.DataTextField = "CourseName";
             ddlstudentCourse.DataValueField = "CourseID";
             ddlstudentCourse.DataBind();
-            //ddlstudentCourse.
-            ddlstudentCourse.Items.Insert(0, new ListItem(" Select ", "0")); 
+            ddlstudentCourse.Items.Insert(0, new ListItem(" Select ", "0"));
         }
 
         //Bind Sem
@@ -123,18 +181,18 @@ namespace GoCollegeWebApp
             }
             else
             {
-              DataView dv = new DataView();
-              
-              dv =  objAdminBL.FetchAllSemsByCourseID(long.Parse(ddlstudentCourse.SelectedValue.ToString()));
+                DataView dv = new DataView();
+
+                dv = objAdminBL.FetchAllSemsByCourseID(long.Parse(ddlstudentCourse.SelectedValue.ToString()));
 
 
-              ddlstudentSemester.DataSource = dv;
-              ddlstudentSemester.DataTextField = "SemNumber";
-              ddlstudentSemester.DataValueField = "SemID";
-              ddlstudentSemester.DataBind();
-              ddlstudentSemester.Items.Insert(0, new ListItem(" Select ", "0")); 
-              
-            } 
+                ddlstudentSemester.DataSource = dv;
+                ddlstudentSemester.DataTextField = "SemNumber";
+                ddlstudentSemester.DataValueField = "SemID";
+                ddlstudentSemester.DataBind();
+                ddlstudentSemester.Items.Insert(0, new ListItem(" Select ", "0"));
+
+            }
         }
 
         // Add Submit Click
@@ -142,7 +200,7 @@ namespace GoCollegeWebApp
         {
             if (Page.IsValid)
             {
-                int chkqry=0;
+                int chkqry = 0;
                 chkqry = objStudentBL.AddStudent(txtstudentUSN.Text.ToString(), long.Parse(Session["CollegeID"].ToString()), long.Parse(ddlstudentCourse.SelectedValue.ToString()), long.Parse(ddlstudentSemester.SelectedValue.ToString()), txtstudentPassword.Text.ToString(), "AdminAdd");
 
                 if (chkqry == 1)
@@ -167,18 +225,18 @@ namespace GoCollegeWebApp
             //Add Form Reset
             txtstudentPassword.Text = "";
             txtstudentUSN.Text = "";
-            
+
             errMsg.Text = "";
-            
+
         }
-        
+
         //Edit Update Student Click
         protected void btneditUpdate_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
             {
                 int result = 0;
-                
+
             }
         }
 
@@ -186,5 +244,5 @@ namespace GoCollegeWebApp
 
 
 
-    }   
+    }
 }

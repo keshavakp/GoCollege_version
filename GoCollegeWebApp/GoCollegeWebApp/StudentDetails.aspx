@@ -216,14 +216,14 @@
 
         <div class="col-md-12 form-group1 ">
             <label class="control-label">Course</label>
-            <asp:DropDownList runat="server" ID="ddleditStudentCourse" CssClass="form-control"></asp:DropDownList>
+            <asp:DropDownList runat="server" ID="ddleditStudentCourse" OnSelectedIndexChanged="ddlstudentEditCourse_SelectedIndexChanged" CssClass="form-control"></asp:DropDownList>
         </div>
         <div class="clearfix"></div>
 
 
         <div class="col-md-12 form-group1 ">
             <label class="control-label">Semester</label>
-            <asp:DropDownList runat="server" ID="ddltxtStudentSemester" CssClass="form-control"></asp:DropDownList>
+            <asp:DropDownList runat="server" ID="ddlEditStudentSemester" CssClass="form-control"></asp:DropDownList>
         </div>
         <div class="clearfix"></div>
 
@@ -256,9 +256,9 @@
 
 
 
+        <asp:HiddenField ID="hfcourseID" runat="server" />
+        <asp:HiddenField ID="hfsemID" runat="server" />
 
 
-
-        <div class="clearfix"></div>
     </div>
 </asp:Content>

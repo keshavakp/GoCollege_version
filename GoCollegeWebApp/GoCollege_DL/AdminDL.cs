@@ -1578,5 +1578,77 @@ namespace GoCollege_DL
 
             return result;
         }
+    
+        //FEtch All Subjects For Grid 
+        public DataView FetchAllSubjectsForGrid(SqlConnection con, SqlTransaction trans, long collegeID)
+        {
+            DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+
+            try
+            {
+                qry = "select SB.SubjectCode,SB.SubjectName,SB.CourseID,SB.SemID,SB.SubjectID, C.CourseShortName, SM.SemNumber from tblSubject SB inner join tblCourse C on C.CourseID= SB.CourseID and C.CollegeID=@CollegeID inner join tblSemester SM  on SM.SemID=SB.SemID";
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+
+                SqlParameter param;
+
+                param = new SqlParameter("@CollegeID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = collegeID;
+                cmd.Parameters.Add(param);
+
+                MyDataAdapter = new SqlDataAdapter(cmd);
+                MyDataAdapter.Fill(MyDataSet);
+            }
+
+            catch (SqlException SqlEx)
+            {
+
+            }
+
+            return MyDataSet.Tables[0].DefaultView;
+        }
+   
+        //Delete Subject
+        public int DeleteSubjectBySubjectID(SqlConnection con,SqlTransaction trans,long subjectID)
+        {
+         DataSet MyDataSet = new DataSet();
+            SqlDataAdapter MyDataAdapter;
+            SqlCommand cmd = null;
+            string qry = "";
+            int result = 0;
+            try
+            {
+
+                qry = " delete from tblSubject where SubjectID=@SubjectID";
+                
+                cmd = new SqlCommand(qry, con, trans);
+                cmd.CommandType = CommandType.Text;
+                SqlParameter param;
+
+                // parameter for College Code
+                param = new SqlParameter("@SubjectID", SqlDbType.BigInt);
+                param.Direction = ParameterDirection.Input;
+                param.Value = subjectID;
+                cmd.Parameters.Add(param);
+
+                result= cmd.ExecuteNonQuery();
+            }
+            catch(Exception ex)
+            {
+            
+            }
+
+            if (result == 0)
+            {               
+                return result;
+            }
+
+
+            return result;
+        }
     }
 }

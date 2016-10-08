@@ -1125,7 +1125,69 @@ namespace GoCollege_BL
             }
             return qry;
         }
+        
+        //Fetch All Subjects FOr Grid
+        public DataView FetchAllSubjectsForGrid(long collegeID)
+        {
+            DataView dvMsg = null;
+            Connection conn = new Connection();
+            int qry = 0;
+            try
+            {
+                conn.BeginTransaction();
 
+                dvMsg = objAdmiDL.FetchAllSubjectsForGrid(conn.con, conn.trans, collegeID);
+
+                if (dvMsg.Count.Equals(0))
+                {
+                    conn.RollbackTransaction();
+                    return dvMsg;
+                }
+
+                conn.CommitTransaction();
+                return dvMsg;
+            }
+            catch (NullReferenceException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dvMsg;
+        }
+
+
+        //Delete Subject 
+        public int DeleteSubjectBySubjectID(long subjectID)
+        {
+            DataView dvMsg = null;
+            int isDeleted = 0;
+            Connection conn = new Connection();
+
+            try
+            {
+                conn.BeginTransaction();
+                isDeleted = objAdmiDL.DeleteSubjectBySubjectID(conn.con, conn.trans, subjectID);
+
+                if (isDeleted == 0)
+                {
+                    conn.RollbackTransaction();
+                    return isDeleted;
+                }
+                conn.CommitTransaction();
+                return isDeleted;
+
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return isDeleted;
+        }
     }
 
 }
