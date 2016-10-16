@@ -237,6 +237,8 @@ namespace GoCollegeWebApp
             {
                 int result = 0;
 
+              //  result = objAdminBL.EditUpdateStudent();
+
             }
         }
 

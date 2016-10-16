@@ -17,8 +17,7 @@ namespace GoCollege_BL
 
         //Student Add By Admin
         public int AddStudent(string studentUSN,  long collegeID,long courseID, long semID, string studentPassword,string flag)
-        {
-           
+        {           
             DataView dvMsg = null;
             Connection conn = new Connection();
             int isStudentAdded = 0;
@@ -77,11 +76,9 @@ namespace GoCollege_BL
             }
             return isStudentAdded;
         }
-
-
+        
         public int EditUpdateStudent(long studentID, long collegeID, string studentUSN, string studentName, string studentEmail, long studentMobile, string studentAddress, long courseID, long semID, string studentPassword, string studentStatus)
         {
-
             DataView dvMsg = null;
             Connection conn = new Connection();
             int isStudentUpdated= 0;
@@ -110,8 +107,7 @@ namespace GoCollege_BL
             }
             return isStudentUpdated;
         }
-
-
+        
         public DataView FetchAllStudentForGrid(long collegeID)
         {
             DataView dvMsg = null;
@@ -212,6 +208,11 @@ namespace GoCollege_BL
             }
             return dvMsg.Table.DefaultView;
         }
+
+        //public int EditUpdateStudent(long studentID,string studentUSN,long courseID,long semID,long studentMobile,string studentEmail)
+        //{
+        //    return 0;
+        //}
 
     }
 }

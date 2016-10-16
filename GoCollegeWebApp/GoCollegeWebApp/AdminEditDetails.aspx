@@ -75,7 +75,7 @@
                         <form id="adminEditDetails" runat="server">
 
 
-                            <h2 class="text-center" style="color: #d95459">Welcome to MyCampuz</h2>
+                            <h2 class="text-center" style="color: #d95459">Welcome to Our Campuz</h2>
 
                             <h3 class="text-center">Update Your Details </h3>
 

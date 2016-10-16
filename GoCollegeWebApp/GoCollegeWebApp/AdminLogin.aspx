@@ -22,7 +22,7 @@
         <h1><a href="Index.aspx"></a></h1>
         <div class="login-bottom">
 
-            <h2 class="text-center" style="color: #d95459">Welcome to MyCampuz</h2>
+            <h2 class="text-center" style="color: #d95459">Welcome to Our Campuz</h2>
             <h2 class="text-center">Login</h2>
             <form id="adminLogin" runat="server">
 
